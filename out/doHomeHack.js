@@ -19,11 +19,11 @@ export function main(_ns) {
 		let singleTargetThreads = ((i + 1) * initialThreads);
 
 		let homeSingleThreads = {};
-		homeSingleThreads.hack = Math.floor(singleTargetThreads * 0.1);
+		homeSingleThreads.hack = Math.floor(singleTargetThreads * 0.2);
 		if (homeSingleThreads.hack < 1) ++homeSingleThreads.hack;
 		homeSingleThreads.weaken = Math.floor(singleTargetThreads * 0.2);
 		if (homeSingleThreads.weaken < 1) ++homeSingleThreads.weaken;
-		homeSingleThreads.grow = Math.floor(singleTargetThreads * 0.7);
+		homeSingleThreads.grow = Math.floor(singleTargetThreads * 0.6);
 
 		let homeTotalThreads = 
 			homeSingleThreads.hack + homeSingleThreads.weaken + homeSingleThreads.grow;
@@ -42,13 +42,28 @@ export function main(_ns) {
 	}
 }
 
+// 조건 만족하면 스크립트 킬 하고 선택된 서버로 교체 하는 거 맹거야됨
 function selectTarget(_ns) {
 	ns = _ns;
 
 	let myLvl = ns.getHackingLevel;
+	let seletedTarget = [];
 
 	for (let i = 0; i < advHomeTarget.length; ++i) {
-		let targetLvl = (ns.getServerRequiredHackingLevel(advHomeTarget[i]) * 2);
-
+		let targetLvl = (ns.getServerRequiredHackingLevel(advHomeTarget[i]) * 4);
+		if (myLvl > targetLvl) {
+			seletedTarget[0] = true;
+			seletedTarget[1] = advHomeTarget[i];
+			killHackScripts(ns, "home");
+			return seletedTarget;
+		}
 	}
+}
+
+function killHackScripts(_ns, target) {
+	ns = _ns;
+
+	ns.scriptKill(loopHackFileName.weaken, target);
+	ns.scriptKill(loopHackFileName.grow, target);
+	ns.scriptKill(loopHackFileName.hack, target);
 }
