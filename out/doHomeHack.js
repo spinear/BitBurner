@@ -43,10 +43,10 @@ export function main(_ns) {
 }
 
 // 조건 만족하면 스크립트 킬 하고 선택된 서버로 교체 하는 거 맹거야됨
-function selectTarget(_ns) {
+function homeSelectTarget(_ns) {
 	ns = _ns;
 
-	let myLvl = ns.getHackingLevel;
+	let myLvl = ns.getHackingLevel();
 	let seletedTarget = [];
 
 	for (let i = 0; i < advHomeTarget.length; ++i) {
