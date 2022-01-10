@@ -17,10 +17,9 @@ export async function main(ns) {
             await ns.scp(loopHackFileName.grow, host);
             await ns.scp(loopHackFileName.hack, host);
 
-            // TODO - Analyze 넣어서 계산 해보기
             let threadCalc = calcThreads(ns, host, loopHackFileName.weaken);
             
-            runLoopHack(ns, loopHackFileName, host, threadCalc, boughtServerHackingTarget);         
+            runLoopHack(ns, loopHackFileName, host, threadCalc, boughtServerHackingTarget, 1);         
             ++i;
         } else {
             ns.tprint(`👾서버 살 돈 없어서 대기중 / 1분 마다 구매 시도`);
