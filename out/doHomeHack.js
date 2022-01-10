@@ -15,19 +15,23 @@ export function main(ns) {
 		// 각 인스턴스 쓰레드 / 서버 번호에 따라 점점 커짐
 		let singleTargetThreads = ((i + 1) * initialThreads);
 
-		// 각 인스턴스 쓰레드가 파일 1개 돌릴 쓰레드 보다 크거나
-		// 쓰레드 계산 실패 하면 리턴
-		if (singleTargetThreads > calculatedThreads || !calculatedThreads.isSucceed) { 
-			ns.tprint('💩집에 램 모잘...'); 
-			return;
-		}
-
+		// TODO : Analyze 넣어서 계산 해보기
 		let homeSingleThreads = {};
 		homeSingleThreads.hack = Math.floor(singleTargetThreads * 0.2);
 		if (homeSingleThreads.hack < 1) ++homeSingleThreads.hack;
 		homeSingleThreads.weaken = Math.floor(singleTargetThreads * 0.2);
 		if (homeSingleThreads.weaken < 1) ++homeSingleThreads.weaken;
 		homeSingleThreads.grow = Math.floor(singleTargetThreads * 0.6);
+
+		let homeTotalThreads = 
+			homeSingleThreads.hack + homeSingleThreads.weaken + homeSingleThreads.grow;
+
+		if (homeTotalThreads > calculatedThreads.useableThreads 
+			|| singleTargetThreads > calculatedThreads 
+			|| !calculatedThreads.isSucceed) {
+			ns.tprint('💩집에 램 모잘러...'); 
+			return;
+		}
 
 		if (ns.getHackingLevel() >= ns.getServerRequiredHackingLevel(target) && ns.hasRootAccess(target))
 			runLoopHack(ns, loopHackFileName, host, homeSingleThreads, target, (i + 1));
