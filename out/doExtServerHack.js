@@ -33,7 +33,7 @@ export async function main(ns) {
             runLoopHack(ns, loopHackFileName, host, threadCalc, defHackingTarget, 1);
             ns.tprint(`INFO 😎 스크립트 발싸!: ${host} / ${threadCalc.useableThreads} threads`);
         } else {
-            ns.tprint(`ERROR 타겟 뉴크 실패`);
+            ns.tprint(`WARN 해킹 타겟 레벨 높거나 포트 안 열림`);
         }
     }
 }

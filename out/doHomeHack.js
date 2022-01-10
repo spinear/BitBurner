@@ -9,35 +9,29 @@ export function main(ns) {
 	for (let i = 0; i < homeHackingTarget.length; ++i) {
 		let target = homeHackingTarget[i];
 
-		// 파일 1개로 집에 남은 쓰레드를 계산
-		let singleFileThreads = calcThreads(ns, host, loopHackFileName.weaken);
-
-		// 그걸로 파일 3개일 때 몇 쓰레드인지 계산
-		let totalFileThreads = singleFileThreads.useableThreads * 3;
+		// 해킹 파일 3개 중 1개로 쓰레드를 계산
+		let calculatedThreads = calcThreads(ns, host, loopHackFileName.weaken);		
 	
-		// 이건 정해진 쓰레드
+		// 각 인스턴스 쓰레드 / 서버 번호에 따라 점점 커짐
 		let singleTargetThreads = ((i + 1) * initialThreads);
 
-		// 쓰레드 계산 실패거나 정해진 쓰레드가 해킹파일 1 x 3개보다 크면 실패
-		if (singleTargetThreads > totalFileThreads || !singleFileThreads.isSucceed) { 
+		// 각 인스턴스 쓰레드가 파일 1개 돌릴 쓰레드 보다 크거나
+		// 쓰레드 계산 실패 하면 리턴
+		if (singleTargetThreads > calculatedThreads || !calculatedThreads.isSucceed) { 
 			ns.tprint('💩집에 램 모잘...'); 
 			return;
 		}
 
-		// 이제 정해진 쓰레드를 파일 3개로 분리해야 됨
 		let homeSingleThreads = {};
-		homeSingleThreads.hack = Math.floor(singleTargetThreads * 0.1);
+		homeSingleThreads.hack = Math.floor(singleTargetThreads * 0.2);
 		if (homeSingleThreads.hack < 1) ++homeSingleThreads.hack;
 		homeSingleThreads.weaken = Math.floor(singleTargetThreads * 0.2);
 		if (homeSingleThreads.weaken < 1) ++homeSingleThreads.weaken;
-		homeSingleThreads.grow = Math.floor(singleTargetThreads * 0.7);
+		homeSingleThreads.grow = Math.floor(singleTargetThreads * 0.6);
 
 		if (ns.getHackingLevel() >= ns.getServerRequiredHackingLevel(target) && ns.hasRootAccess(target))
-			//ns.exec(filename, host, threads, target, moneyThresh, securityThresh, threads);
 			runLoopHack(ns, loopHackFileName, host, homeSingleThreads, target, (i + 1));
 		else
 			ns.tprint('💩레벨 낮엉');
 	}
 }
-
-// TEST!!!dfgdfgsdfsdf
