@@ -18,7 +18,7 @@ export function main(ns) {
 		// 이건 정해진 쓰레드
 		let singleTargetThreads = ((i + 1) * initialThreads);
 
-		// 애초에 쓰레드 계산 실패거나 정해진 쓰레드 7이 파일 1개 x 3개로 계산한 쓰레드보다 크면 실패
+		// 쓰레드 계산 실패거나 정해진 쓰레드가 해킹파일 1 x 3개보다 크면 실패
 		if (singleTargetThreads > totalFileThreads || !singleFileThreads.isSucceed) { 
 			ns.tprint('💩집에 램 모잘...'); 
 			return;
