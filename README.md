@@ -1,2 +1,2 @@
 # Bitburner
-I don't know what am I doing.
+Honestly, I don't know what I'm doing.
