@@ -7,7 +7,7 @@ export const loopHackFileName = {
 };
 
 // 상점 해킹 타겟
-export let defHackingTarget = "harakiri-sushi";
+export let defHackingTarget = "joesguns";
 
 // 구매 서버 해킹 타겟
 export let boughtServerHackingTarget = "phantasy";
