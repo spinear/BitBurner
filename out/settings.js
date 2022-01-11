@@ -6,12 +6,17 @@ export const loopHackFileName = {
     hack: "hack.js"
 };
 
-// 상점 해킹 타겟
-//export const defHackingTarget = "phantasy";
-
 // 구매 서버 해킹 타겟
 export const boughtServerHackingTarget = "the-hub";
 export const boughtServerRam = 512;
+
+export let advHomeTarget = [
+    "n00dles", "harakiri-sushi", "phantasy", "omega-net", 
+    "the-hub", "catalyst", "rho-construction", "global-pharm"
+];
+
+// 상점 해킹 타겟
+//export const defHackingTarget = "phantasy";
 
 // 홈에서 돌아갈 해킹 타겟 /homehack/hh01.js ~
 //export const initialThreads = 24; // 1번 파일 시작 쓰레드값
@@ -33,6 +38,3 @@ export const boughtServerRam = 512;
     //"b-and-a"
 ]; */
 
-export let advHomeTarget = [
-    "n00dles", "harakiri-sushi", "phantasy", "omega-net", "the-hub", "catalyst", "rho-construction", "global-pharm"
-];

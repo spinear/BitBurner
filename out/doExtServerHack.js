@@ -24,7 +24,7 @@ export async function main(ns) {
         let threadCalc = calcThreads(ns, host, loopHackFileName.weaken);
 
         // 파일을 업로드 할 서버의 루트 엑세스를 검사
-        if (threadCalc.isSucceed && ns.hasRootAccess(host)) { 
+        if (threadCalc.isSucceed && ns.hasRootAccess(host)) {
             await ns.scp(loopHackFileName.weaken, host);
             await ns.scp(loopHackFileName.grow, host);
             await ns.scp(loopHackFileName.hack, host);
