@@ -1,6 +1,7 @@
 /** @param {import(".").NS } ns */
 
 export async function main(ns) {
+	ns.tail();
 	while(true) {
 		ns.exec("nukeServers.js", "home");
 		await ns.sleep(500);
