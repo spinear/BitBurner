@@ -39,11 +39,11 @@ export async function main(ns) {
         let threadCalc = calcThreads(ns, host, loopHackFileName.weaken);
 
         // 해킹 할 서버의 루트 엑세스를 검사
-        if (threadCalc.isSucceed && ns.hasRootAccess(target)) {
+        if (ns.hasRootAccess(target)) {
             runLoopHack(ns, loopHackFileName, host, threadCalc, target, 1);
             ns.tprint(`INFO 😎 스크립트 발싸!: ${host} / ${threadCalc.useableThreads} threads`);
         } else {
-            ns.tprint(`WARN 해킹 타겟 레벨 높거나 포트 안 열림`);
+            ns.tprint(`WARN 해킹 타겟 포트 안 열림`);
         }
     }
 }
