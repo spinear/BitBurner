@@ -1,3 +1,5 @@
+import { loopHackFileName } from "./settings";
+
 /** @type import(".").NS */
 let ns = null;
 
@@ -17,8 +19,8 @@ export function calcThreads(_ns, host, filename) {
     let isSucceed = false;
 
     let useableThreads = Math.floor((maxRam - usedRam) / jsRam);
-    let remainingRam = maxRam - usedRam;
-
+    let rawThreads = Math.floor(maxRam / jsRam);
+     
     if (useableThreads > 2) isSucceed = true;
     else isSucceed = false;
 
@@ -31,7 +33,7 @@ export function calcThreads(_ns, host, filename) {
     const useableThreadsObj = {
         maxRam: maxRam,
         usedRam: usedRam,
-        remainingRam: remainingRam,
+        rawThreads: rawThreads,
         useableThreads: useableThreads,
         hack: hack,
         weaken: weaken,
@@ -39,5 +41,18 @@ export function calcThreads(_ns, host, filename) {
         isSucceed: isSucceed
     }
     return useableThreadsObj;
+}
+
+export function killHackScripts(_ns, target) {
+	ns = _ns;
+
+	if (target != "home") { 
+		ns.killall(target);
+	}
+	else {
+		ns.scriptKill(loopHackFileName.weaken, target);
+		ns.scriptKill(loopHackFileName.grow, target);
+		ns.scriptKill(loopHackFileName.hack, target);
+	}
 }
 
