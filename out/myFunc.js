@@ -1,11 +1,11 @@
 /** @type import(".").NS */
 let ns = null;
 
-export function runLoopHack(_ns, loopHackFileName, host, threadCalc, target, numInstances) {
+export function runLoopHack(_ns, loopHackFileName, host, threadCalc, target, instanceNum) {
     ns = _ns;
-    ns.exec(loopHackFileName.weaken, host, threadCalc.weaken, target, numInstances);
-    ns.exec(loopHackFileName.grow, host, threadCalc.grow, target, numInstances);
-    ns.exec(loopHackFileName.hack, host, threadCalc.hack, target, numInstances);
+    ns.exec(loopHackFileName.weaken, host, threadCalc.weaken, target, instanceNum);
+    ns.exec(loopHackFileName.grow, host, threadCalc.grow, target, instanceNum);
+    ns.exec(loopHackFileName.hack, host, threadCalc.hack, target, instanceNum);
 }
 
 //쓰레드 계산 
@@ -22,11 +22,11 @@ export function calcThreads(_ns, host, filename) {
     if (useableThreads > 2) isSucceed = true;
     else isSucceed = false;
 
-    let hack = Math.floor(useableThreads * 0.1);
+    let hack = Math.floor(useableThreads * 0.05);
     if (hack < 1) ++hack;
-    let weaken = Math.floor(useableThreads * 0.2);
+    let weaken = Math.floor(useableThreads * 0.15);
     if (weaken < 1) ++weaken;
-    let grow = Math.floor(useableThreads * 0.7);
+    let grow = Math.floor(useableThreads * 0.8);
 
     const useableThreadsObj = {
         maxRam: maxRam,
