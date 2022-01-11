@@ -22,11 +22,11 @@ export function calcThreads(_ns, host, filename) {
     if (useableThreads > 2) isSucceed = true;
     else isSucceed = false;
 
-    let hack = Math.floor(useableThreads * 0.2);
+    let hack = Math.floor(useableThreads * 0.1);
     if (hack < 1) ++hack;
     let weaken = Math.floor(useableThreads * 0.2);
     if (weaken < 1) ++weaken;
-    let grow = Math.floor(useableThreads * 0.6);
+    let grow = Math.floor(useableThreads * 0.7);
 
     const useableThreadsObj = {
         maxRam: maxRam,

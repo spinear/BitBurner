@@ -2,6 +2,11 @@
 
 export async function main(ns) {
 	ns.tail();
+ 	ns.clearPort(1);
+	ns.clearPort(2);
+	
+	await ns.writePort(1, "n00dles");
+
 	while(true) {
 		ns.exec("nukeServers.js", "home");
 		await ns.sleep(500);
