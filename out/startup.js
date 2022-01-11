@@ -5,6 +5,7 @@ export async function main(ns) {
 	ns.clearPort(1); // 임시 타겟
 	ns.clearPort(2); // 조건 부 타겟
 	ns.clearPort(3); // 스트링 불린
+	await ns.writePort(1, "n00dles");
 	let tmpLVL = 0;
 
 	while (true) {
@@ -22,7 +23,7 @@ export async function main(ns) {
 			await ns.sleep(1000);
 
 			ns.exec("doExtServerHack.js", "home");
-			ns.print(`INFO 💰타겟이 가진 돈 ${ns.nFormat(ns.getServerMoneyAvailable(ns.peek(2)), '0.0a')} 💰`);
+			ns.print(`INFO 💰타겟이 가진 돈 ${ns.nFormat(ns.getServerMoneyAvailable(ns.peek(1)), '0.0a')} 💰`);
 			ns.print(`INFO 🎉nukeServers && doHomeHack 실행대기`);
 		}
 

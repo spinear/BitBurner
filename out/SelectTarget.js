@@ -15,11 +15,9 @@ export async function main(_ns) {
     for (let i = 0; i < advHomeTarget.length; ++i) {
         let targetLvl = ns.getServerRequiredHackingLevel(advHomeTarget[i]) * 4;
 
-        if ((myLvl + 5) > targetLvl && ns.hasRootAccess(advHomeTarget[i])) {
+        // 여기 예외처리 추가 해야함. 하다 실패함!
+        if ((myLvl + 5) > targetLvl) {
             tmpTarget = advHomeTarget[i];
-        } else {
-            ns.tprint(`INFO 다음 타겟 랩이 높거나 루트 액세스가 없당`);
-            tmpTarget = ns.peek(1);
         }
     }
 
