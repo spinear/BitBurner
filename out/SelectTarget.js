@@ -18,9 +18,9 @@ export async function main(_ns) {
         
         if ((myLvl + 5) > targetLvl) {
             tmpTarget = advHackingTarget[i];
-            tmpTarget2 = advHackingTarget[Math.max((j - 1), 0)];            
+            tmpTarget2 = advHackingTarget[Math.max((j - 1), 0)];
         }
-        ++j;       
+        ++j;
         ns.tprint(`${tmpTarget} ${tmpTarget2}`);
     }
 

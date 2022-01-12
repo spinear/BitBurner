@@ -6,6 +6,8 @@ let ns = null;
 
 export async function main(_ns) {
     ns = _ns;
+
+    // TODO: 계산해서 서버 램 늘리는 거 만들기
     let ram = boughtServerRam;
     let i = 0;
 
