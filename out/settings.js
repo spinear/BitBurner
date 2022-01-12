@@ -12,7 +12,7 @@ export const boughtServerRam = 512;
 
 export const advHackingTarget = [
     "n00dles", "harakiri-sushi", "phantasy", "omega-net", 
-    "the-hub", "catalyst", "rho-construction", "global-pharm"
+    "the-hub", "catalyst", "rho-construction", "global-pharm", "4sigma"
 ];
 
 export const serverList = [
@@ -32,27 +32,4 @@ export const serverList = [
     "vitalife", "The-Cave", ".", "megacorp", "microdyne", 
     "powerhouse-fitness", "applied-energetics"
 ];
-
-// 상점 해킹 타겟
-//export const defHackingTarget = "phantasy";
-
-// 홈에서 돌아갈 해킹 타겟 /homehack/hh01.js ~
-//export const initialThreads = 24; // 1번 파일 시작 쓰레드값
-
-/* export const homeHackingTarget = [
-    "n00dles",
-    "joesguns",
-    "harakiri-sushi",
-    "phantasy",
-    "omega-net",
-    "unitalife",
-    "alpha-ent",
-    "lexo-corp",
-    "zb-institute",
-    "nova-med", 
-    //"zeus-med", 
-    //"global-pharm",
-    //"deltaone",
-    //"b-and-a"
-]; */
 

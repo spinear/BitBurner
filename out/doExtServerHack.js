@@ -7,7 +7,7 @@ export async function main(ns) {
     let hackingFileCopiedServers = [];
     let j = 0;
 
-    let target = ns.peek(2);
+    let target = ns.peek(4);
 	let isSmushed = ns.peek(3);
 
     if (isSmushed == "true") { 
