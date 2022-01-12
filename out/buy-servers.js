@@ -1,13 +1,15 @@
 import { runLoopHack, calcThreads } from "./myFunc";
 import { boughtServerHackingTarget, boughtServerRam, loopHackFileName } from "./settings";
 
-/** @param {import(".").NS } ns */
+/** @type import('.').NS */
+let ns = null;
 
-export async function main(ns) {
+export async function main(_ns) {
+    ns = _ns;
     let ram = boughtServerRam;
     let i = 0;
 
-    checkCondition(ns);
+    if(!checkCondition(ns)) return;
 
     while (i < ns.getPurchasedServerLimit()) {
         if (ns.getServerMoneyAvailable("home") > ns.getPurchasedServerCost(ram)) {
@@ -28,10 +30,12 @@ export async function main(ns) {
     }
 }
 
-function checkCondition(ns) {
+function checkCondition(_ns) {
+    ns = _ns;
     if (ns.getHackingLevel() < ns.getServerRequiredHackingLevel(boughtServerHackingTarget) 
         || !ns.hasRootAccess(boughtServerHackingTarget)) {        
         ns.tprint(`해킹 할 서버가 레벨 높거나 포트 안 열려서 서버 안 삼`);
-        return;
+        return false;
     }
+    return true;
 }

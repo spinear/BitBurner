@@ -42,7 +42,7 @@ export async function main(ns) {
             runLoopHack(ns, loopHackFileName, host, threadCalc, target, 1);
             ns.tprint(`INFO 😎 스크립트 발싸!: ${host} / ${threadCalc.useableThreads} threads`);
         } else {
-            ns.tprint(`WARN 해킹 타겟 포트 안 열림`);
+            ns.tprint(`ERROR 해킹 타겟 포트 안 열림`);
         }
     }
 }
