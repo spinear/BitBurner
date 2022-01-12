@@ -1,6 +1,6 @@
 import { advHackingTarget } from "./settings.js";
 
-/** @type import(".").NS */
+/** @type import('.').NS */
 let ns = null;
 
 export async function main(_ns) {
@@ -8,6 +8,7 @@ export async function main(_ns) {
 
     let myLvl = ns.getHackingLevel();
     let tmpTarget = '';
+    let tmpTarget2 = '';
     let isSmushed = 'false'
 
     for (let i = 0; i < advHackingTarget.length; ++i) {
@@ -30,7 +31,7 @@ export async function main(_ns) {
     let tmpPeek1 = ns.peek(1);
     let tmpPeek2 = ns.peek(2);
 
-    ns.tprint(`WARN 루프 후 포트 값 ${ns.peek(1)} ${ns.peek(2)}`);
+    ns.tprint(`WARN 타겟 서버 ${ns.peek(1)} 이(가) ${ns.peek(2)}로 바뀔꺼임!`);
 
      if (tmpPeek1 == tmpPeek2) {
         isSmushed = 'false';
@@ -39,8 +40,6 @@ export async function main(_ns) {
         await ns.writePort(1, tmpPeek2);
         isSmushed = 'true';
     }
-
-    ns.tprint(`WARN 비교 후 포트 값 ${ns.peek(1)} ${ns.peek(2)}`);
 
     ns.clearPort(3);
     await ns.writePort(3, isSmushed);

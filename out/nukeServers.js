@@ -1,4 +1,4 @@
-import { p0servers } from "serverList.js";
+import { serverList } from "./settings";
 
 /** @param {import(".").NS } ns */
 
@@ -33,8 +33,8 @@ export function crackServers(ns, host) {
 }
 
 export async function main(ns) {
-    for (let i = 0; i < p0servers.length; ++i) {
-        let host = p0servers[i];
+    for (let i = 0; i < serverList.length; ++i) {
+        let host = serverList[i];
         crackServers(ns, host);
     }
 }

@@ -1,5 +1,4 @@
-import { p0servers } from "./serverList";
-import { loopHackFileName } from "./settings";
+import { loopHackFileName, serverList } from "./settings";
 import { calcThreads, killHackScripts, runLoopHack } from "./myFunc";
 
 /** @param {import(".").NS } ns */
@@ -12,15 +11,15 @@ export async function main(ns) {
 	let isSmushed = ns.peek(3);
 
     if (isSmushed == "true") { 
-        for (let i = 0; i < p0servers.length; ++i) {
-            let host = p0servers[i];
+        for (let i = 0; i < serverList.length; ++i) {
+            let host = serverList[i];
             killHackScripts(ns, host);
         }
     }
  
     // 뉴크 후 파일 업로드
-    for (let i = 0; i < p0servers.length; ++i) {
-        let host = p0servers[i];
+    for (let i = 0; i < serverList.length; ++i) {
+        let host = serverList[i];
         let threadCalc = calcThreads(ns, host, loopHackFileName.weaken);
 
         // 파일을 업로드 할 서버의 루트 엑세스를 검사
