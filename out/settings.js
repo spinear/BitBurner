@@ -7,8 +7,8 @@ export const loopHackFileName = {
 };
 
 // 구매 서버 해킹 타겟
-export const boughtServerHackingTarget = "zb-def";
-export const boughtServerRam = 1024;
+export const boughtServerHackingTarget = "joesguns";
+export const boughtServerRam = 16;
 
 export const advHackingTarget = [
     "n00dles", "harakiri-sushi", "phantasy", "omega-net", 

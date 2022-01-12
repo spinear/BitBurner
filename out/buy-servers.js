@@ -7,7 +7,6 @@ let ns = null;
 export async function main(_ns) {
     ns = _ns;
 
-    // TODO: 계산해서 서버 램 늘리는 거 만들기
     let ram = boughtServerRam;
     let i = 0;
 
@@ -40,4 +39,23 @@ function checkCondition(_ns) {
         return false;
     }
     return true;
+}
+
+// 자동으로 서버 램 선택하는 거 맹그는 중!
+
+export function calcPSRamCost(_ns) {
+    let ram = 8;
+    let serverCostArray = [];
+    let serverTotalCost = 0;
+    let pickedCost = 0;
+
+    for (let i = 0; i < 8; ++i) {
+        serverCostArray[i] = ns.getPurchasedServerCost(ram);
+        serverTotalCost = serverCostArray[i] * 25;
+        ns.tprint(serverCostArray[i] + " " + ram + " " + ns.nFormat(serverTotalCost, '0.0a'));
+        ram = ram * 2;
+    }
+    // 내 돈이 서버 25개 가격보다 적으면 
+    // 어레이 -1값이 현찰박치기로 살 수 있는 서버인데
+    // 이게 몇 램인지 알아야 되니깐 램을 저장해야 되나? 암튼 일케 해볼꺼임
 }

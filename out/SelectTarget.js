@@ -39,7 +39,7 @@ export async function main(_ns) {
     await ns.writePort(4, tmpTarget2);   
 
     if (ns.peek(1) == ns.peek(2)) {
-        ns.tprint(`WARN 현재 타겟 ${ns.peek(1)}`);
+        ns.tprint(`WARN 현재 타겟 ${ns.peek(1)} & ${ns.peek(4)}`);
         isSmushed = 'false';
     } else {
         ns.tprint(`WARN 타겟 ${ns.peek(1)}이(가) ${ns.peek(2)}로 바뀔꺼임!`);
