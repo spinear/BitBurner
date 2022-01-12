@@ -17,7 +17,4 @@ export async function main(_ns) {
 		let calculatedThreads = calcThreads(ns, host, loopHackFileName.weaken);
 		runLoopHack(ns, loopHackFileName, host, calculatedThreads, target, 1);		
 	}
-	else
-		ns.tprint('🎀홈 해킹 업뎃 안함. 할 필요 없거나 타겟 포트가 안 열렸거나');
 }
-

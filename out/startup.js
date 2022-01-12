@@ -8,7 +8,6 @@ export async function main(ns) {
 	let tmpLVL = 0;
 
 	while (true) {
-
 		if (tmpLVL != ns.getHackingLevel()) {
 			ns.exec("nukeServers.js", "home");
 			await ns.sleep(500);
@@ -18,14 +17,11 @@ export async function main(ns) {
 			await ns.sleep(500);
 
 			ns.exec("doHomeHack.js", "home");
-			ns.print(`INFO 🎉doExtServerHack 실행대기`);
 			await ns.sleep(1000);
 
 			ns.exec("doExtServerHack.js", "home");
 			ns.print(`INFO 💰타겟이 가진 돈 ${ns.nFormat(ns.getServerMoneyAvailable(ns.peek(1)), '0.0a')} 💰`);
-			ns.print(`INFO 🎉nukeServers && doHomeHack 실행대기`);
 		}
-
 		tmpLVL = ns.getHackingLevel();
 		await ns.sleep(60000);
 	}

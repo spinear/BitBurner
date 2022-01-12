@@ -1,4 +1,4 @@
-import { advHomeTarget } from "./settings.js";
+import { advHackingTarget } from "./settings.js";
 
 /** @type import(".").NS */
 let ns = null;
@@ -10,16 +10,17 @@ export async function main(_ns) {
     let tmpTarget = '';
     let isSmushed = 'false'
 
-    for (let i = 0; i < advHomeTarget.length; ++i) {
-        let targetLvl = ns.getServerRequiredHackingLevel(advHomeTarget[i]) * 4;
+    for (let i = 0; i < advHackingTarget.length; ++i) {
+        let targetLvl = ns.getServerRequiredHackingLevel(advHackingTarget[i]) * 4;
 
         if ((myLvl + 5) > targetLvl) {
-            tmpTarget = advHomeTarget[i];
+            tmpTarget = advHackingTarget[i];
         }
     }
 
     // 선택 된 타겟에 루트 엑세스가 없으면 강제로 복귀
     if (!ns.hasRootAccess(tmpTarget)) {
+        ns.tprint(`ERROR 💩 다음 타겟 포트 안열림!`);
         tmpTarget = ns.peek(1);
     }
 

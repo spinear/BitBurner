@@ -10,7 +10,7 @@ export const loopHackFileName = {
 export const boughtServerHackingTarget = "the-hub";
 export const boughtServerRam = 512;
 
-export let advHomeTarget = [
+export let advHackingTarget = [
     "n00dles", "harakiri-sushi", "phantasy", "omega-net", 
     "the-hub", "catalyst", "rho-construction", "global-pharm"
 ];
