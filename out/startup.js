@@ -5,7 +5,6 @@ export async function main(ns) {
 	ns.clearPort(1); // 임시 타겟
 	ns.clearPort(2); // 조건 부 타겟
 	ns.clearPort(3); // 스트링 불린
-	await ns.writePort(1, "n00dles");
 	let tmpLVL = 0;
 
 	while (true) {
