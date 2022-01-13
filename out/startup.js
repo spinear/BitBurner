@@ -21,6 +21,9 @@ export async function main(_ns) {
 
 			ns.exec('doExtServerHack.js', 'home');
 			ns.print(`INFO 💰타겟이 가진 돈 ${ns.nFormat(ns.getServerMoneyAvailable(ns.peek(1)), '0.0a')} 💰`);
+			await ns.sleep(1000);
+
+			ns.exec('buy-servers.js', 'home');
 		}
 		tmpLVL = ns.getHackingLevel();
 		await ns.sleep(60000);
