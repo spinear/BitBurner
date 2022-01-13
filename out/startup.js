@@ -37,5 +37,6 @@ function init(_ns) {
 	ns.clearPort(2); // 조건 부 타겟
 	ns.clearPort(3); // 스트링 불린
 	ns.clearPort(4); // 조건 부 타겟의 -1 서버로 상점이 씀
+	ns.clearPort(5); // 구매 서버 램 임시 저장
 }
 
