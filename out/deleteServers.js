@@ -8,5 +8,5 @@ export async function main(ns) {
         ns.killall(serv);
         ns.deleteServer(serv);
     }
-    ns.tprint(`다 지움`);
+    ns.tprint(`서버 다 지움`);
 }
