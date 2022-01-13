@@ -50,6 +50,7 @@ async function installServer(_ns, pickedRam) {
         runLoopHack(ns, loopHackFileName, host, threadCalc, boughtServerHackingTarget, 1);
         ++i;
     }
+    ns.tprint(`서버 설치 완료`);
 }
 // 자동으로 서버 램 선택하는 거 맹그는 중!
 
@@ -59,9 +60,9 @@ export function selectServerRam(_ns) {
     let serverTotalCost = 0;
     let pickedRam = [16, 0];
 
-    for (let i = 0; i < 8; ++i) {
+    for (let i = 0; i < 16; ++i) {
         serverTotalCost = ns.getPurchasedServerCost(ram) * 25;
-        if (ns.getServerMoneyAvailable('home') < serverTotalCost) {
+        if (ns.getServerMoneyAvailable('home') * 0.5 < serverTotalCost) {
             return pickedRam;
         } else {
             pickedRam[0] = ram;
