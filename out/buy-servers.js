@@ -10,15 +10,18 @@ export async function main(_ns) {
     let isSmushed = ns.peek(3);
     let pickedRam = selectServerRam(ns);
 
+    ns.tprint('ERROR - PORT 5 = ' + ns.peek(5));
+
     if (pickedRam[1]) {
+
         // 근데 타겟이 바꼈거나 이전 램하고 다를 때
         if (isSmushed == 'true' || pickedRam[0] != ns.peek(5)) {
             ns.tprint('고른 서버: ' + pickedRam[0] + ' GB');
             ns.tprint(`WARN 💻 서버 업글 가능!`);
-            await installServer(ns, pickedRam);
 
-        } else 
-            ns.tprint(`서버 냅둠`);
+            await installServer(ns, pickedRam);
+        
+        } else ns.tprint(`서버 냅둠`);
         
         // 다음 비교를 위해 램을 포트에 저장
         ns.clearPort(5);
@@ -65,9 +68,9 @@ export function selectServerRam(_ns) {
         if (ns.getServerMoneyAvailable('home') * 0.6 < ns.getPurchasedServerCost(ram) * 25) {
             // 지금 고른 램이 이전 램보다 작으면 이전 램으로 덮음
             if (ns.peek(5) != 'NULL PORT DATA' && pickedRam[0] <= ns.peek(5)) {
-                ns.tprint('이전 보다 적은 램을 고름: ' + pickedRam[0] + ' GB');
+                ns.tprint('이전 보다 적거나 같은 램을 고름: ' + pickedRam[0] + ' GB');
                 pickedRam[0] = ns.peek(5);               
-            }          
+            }
             // 맨 처음 루프에서 if에 걸리면 기본 값 [16, false]을 리턴
             return pickedRam;
 
@@ -77,4 +80,5 @@ export function selectServerRam(_ns) {
         }
         ram = ram * 2;
     }
+    return pickedRam; // 루프 끝나고 리턴 빼먹으면 클남!!!
 }

@@ -25,9 +25,9 @@ export function calcThreads(_ns, host, filename) {
     else isSucceed = false;
 
     // TODO: 계산해서 쓰레드 분배하는 거 만들기
-    let hack = Math.floor(useableThreads * 0.05);
+    let hack = Math.floor(useableThreads * 0.025);
     if (hack < 1) ++hack;
-    let weaken = Math.floor(useableThreads * 0.15);
+    let weaken = Math.floor(useableThreads * 0.175);
     if (weaken < 1) ++weaken;
     let grow = Math.floor(useableThreads * 0.8);
 
