@@ -13,23 +13,33 @@ export function runLoopHack(_ns, loopHackFileName, host, threadCalc, target, ins
 //쓰레드 계산 
 export function calcThreads(_ns, host, filename) {
     ns = _ns;
-    let maxRam = ns.getServerMaxRam(host) * 0.9;
+    let maxRam = ns.getServerMaxRam(host) * 0.95;
     let usedRam = ns.getServerUsedRam(host);
     let jsRam = ns.getScriptRam(filename);
     let isSucceed = false;
 
     let useableThreads = Math.floor((maxRam - usedRam) / jsRam);
     let rawThreads = Math.floor(maxRam / jsRam);
-     
+
     if (useableThreads > 2) isSucceed = true;
     else isSucceed = false;
 
     // TODO: 계산해서 쓰레드 분배하는 거 만들기
-    let hack = Math.floor(useableThreads * 0.025);
+    let [hackRatio, weakenRatio, growRatio] = [0, 0, 0];
+    let tmpHackingLvl = ns.getHackingLevel();
+
+    if (tmpHackingLvl < 1000)
+        [hackRatio, weakenRatio, growRatio] = [0.2, 0.3, 0.5];
+    else if (tmpHackingLvl > 1000 && tmpHackingLvl < 2000)
+        [hackRatio, weakenRatio, growRatio] = [0.125, 0.175, 0.7];
+    else if (tmpHackingLvl > 2000)
+        [hackRatio, weakenRatio, growRatio] = [0.015, 0.185, 0.8];
+
+    let hack = Math.floor(useableThreads * hackRatio);
     if (hack < 1) ++hack;
-    let weaken = Math.floor(useableThreads * 0.175);
+    let weaken = Math.floor(useableThreads * weakenRatio);
     if (weaken < 1) ++weaken;
-    let grow = Math.floor(useableThreads * 0.8);
+    let grow = Math.floor(useableThreads * growRatio);
 
     const useableThreadsObj = {
         maxRam: maxRam,
@@ -45,15 +55,15 @@ export function calcThreads(_ns, host, filename) {
 }
 
 export function killHackScripts(_ns, target) {
-	ns = _ns;
+    ns = _ns;
 
-	if (target != "home") { 
-		ns.killall(target);
-	}
-	else {
-		ns.scriptKill(loopHackFileName.weaken, target);
-		ns.scriptKill(loopHackFileName.grow, target);
-		ns.scriptKill(loopHackFileName.hack, target);
-	}
+    if (target != "home") {
+        ns.killall(target);
+    }
+    else {
+        ns.scriptKill(loopHackFileName.weaken, target);
+        ns.scriptKill(loopHackFileName.grow, target);
+        ns.scriptKill(loopHackFileName.hack, target);
+    }
 }
 
