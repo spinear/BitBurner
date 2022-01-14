@@ -5,19 +5,19 @@ import { calcThreads, killHackScripts, runLoopHack } from "./myFunc";
 
 export async function main(ns) {
     let hackingFileCopiedServers = [];
-    let j = 0;
 
     let target = ns.peek(4);
-	let isSmushed = ns.peek(3);
+    let isSmushed = ns.peek(3);
 
-    if (isSmushed == "true") { 
+    if (isSmushed == "true") {
         for (let i = 0; i < serverList.length; ++i) {
             let host = serverList[i];
             killHackScripts(ns, host);
         }
     }
- 
+
     // 뉴크 후 파일 업로드
+    let j = 0;
     for (let i = 0; i < serverList.length; ++i) {
         let host = serverList[i];
         let threadCalc = calcThreads(ns, host, loopHackFileName.weaken);
@@ -33,7 +33,7 @@ export async function main(ns) {
     }
 
     // 파일이 업로드 된 서버만 루프 해킹 실행
-    for (let i = 0; i < hackingFileCopiedServers.length; ++i) { 
+    for (let i = 0; i < hackingFileCopiedServers.length; ++i) {
         let host = hackingFileCopiedServers[i];
         let threadCalc = calcThreads(ns, host, loopHackFileName.weaken);
 
@@ -42,7 +42,7 @@ export async function main(ns) {
             runLoopHack(ns, loopHackFileName, host, threadCalc, target, 1);
             ns.tprint(`INFO 😎 스크립트 발싸!: ${host} / ${threadCalc.useableThreads} threads`);
         } else {
-            ns.tprint(`ERROR 해킹 타겟 포트 안 열림`);
+            ns.tprint(`ERROR 해킹 타겟 포트 안 열림 ${host}`);
         }
     }
 }

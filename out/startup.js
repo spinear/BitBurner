@@ -13,18 +13,18 @@ export async function main(_ns) {
 			await ns.sleep(500);
 
 			ns.exec('SelectTarget.js', 'home');
-			ns.print(`INFO 🎉포트 1: ${ns.peek(1)} 포트 2: ${ns.peek(2)} 포트 3: ${ns.peek(3)}`);
 			await ns.sleep(500);
 
 			ns.exec('doHomeHack.js', 'home');
 			await ns.sleep(1000);
 
 			ns.exec('doExtServerHack.js', 'home');
-			ns.print(`INFO 💰타겟이 가진 돈 ${ns.nFormat(ns.getServerMoneyAvailable(ns.peek(1)), '0.0a')} 💰`);
 			await ns.sleep(1000);
 
 			ns.exec('buy-servers.js', 'home');
 		}
+		ns.print(`INFO 💰타겟이 가진 돈 ${ns.nFormat(ns.getServerMoneyAvailable(ns.peek(1)), '0.0a')} 💰`);
+		ns.print(`INFO 🎉포트 1: ${ns.peek(1)} 포트 2: ${ns.peek(2)} 포트 3: ${ns.peek(3)} 포트 5: ${ns.peek(5)}`);
 		tmpLVL = ns.getHackingLevel();
 		await ns.sleep(60000);
 	}

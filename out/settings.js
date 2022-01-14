@@ -12,7 +12,7 @@ export const boughtServerRam = 16;
 
 export const advHackingTarget = [
     "n00dles", "harakiri-sushi", "phantasy", "omega-net",
-    "the-hub", "catalyst", "rho-construction", "global-pharm", "4sigma"
+    "the-hub", "catalyst", "rho-construction", "global-pharm", "b-and-a"
 ];
 
 export const serverList = [
