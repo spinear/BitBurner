@@ -10,16 +10,15 @@ export async function main(_ns) {
     let isSmushed = ns.peek(3);
     let pickedRam = selectServerRam(ns);
 
-    // pickedRam에서 totalCost가 기본값이 아니면
-    if (pickedRam[1] != 0) {
-        ns.tprint('고른 서버: ' + pickedRam[0] + ' GB');
-
-        // 근데 타겟이 바꼈거나 다른 램을 살 수 있을때만
-        if (isSmushed == 'true' || pickedRam[0] != ns.peek(5)) { 
+    if (pickedRam[1]) {
+        // 근데 타겟이 바꼈거나 이전 램하고 다를 때
+        if (isSmushed == 'true' || pickedRam[0] != ns.peek(5)) {
+            ns.tprint('고른 서버: ' + pickedRam[0] + ' GB');
             ns.tprint(`WARN 💻 서버 업글 가능!`);
             await installServer(ns, pickedRam);
 
-        } else ns.tprint(`서버 냅둠`);
+        } else 
+            ns.tprint(`서버 냅둠`);
         
         // 다음 비교를 위해 램을 포트에 저장
         ns.clearPort(5);
@@ -60,22 +59,22 @@ async function installServer(_ns, pickedRam) {
 export function selectServerRam(_ns) {
     ns = _ns;
     let ram = 16;
-    let serverTotalCost = 0;
-    let pickedRam = [16, 0];
+    let pickedRam = [16, false]; // 최초값 port 5 = null
 
     for (let i = 0; i < 9; ++i) {
-        serverTotalCost = ns.getPurchasedServerCost(ram) * 25;
+        if (ns.getServerMoneyAvailable('home') * 0.6 < ns.getPurchasedServerCost(ram) * 25) {
+            // 지금 고른 램이 이전 램보다 작으면 이전 램으로 덮음
+            if (ns.peek(5) != 'NULL PORT DATA' && pickedRam[0] <= ns.peek(5)) {
+                ns.tprint('이전 보다 적은 램을 고름: ' + pickedRam[0] + ' GB');
+                pickedRam[0] = ns.peek(5);               
+            }          
+            // 맨 처음 루프에서 if에 걸리면 기본 값 [16, false]을 리턴
+            return pickedRam;
 
-        if (ns.getServerMoneyAvailable('home') * 0.6 < serverTotalCost) {
-            return pickedRam; // 맨 처음 루프에서 if에 걸리면 기본 값 [16, 0]을 리턴
         } else {
             pickedRam[0] = ram;
-            pickedRam[1] = serverTotalCost; // 이건 순전히 최초 1회 비교용 변수
+            pickedRam[1] = true;
         }
         ram = ram * 2;
     }
-
-    // 이전 램 보다 작으면 포트에 저장된 램으로 덮음
-    if (pickedRam[0] <= ns.peek(5)) pickedRam[0] = ns.peek(5);
-    return pickedRam;
 }
