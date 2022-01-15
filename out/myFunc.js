@@ -1,4 +1,4 @@
-import { loopHackFileName } from "./settings";
+import { loopHackFileName, advHackingTarget } from "./settings";
 
 /** @type import(".").NS */
 let ns = null;
@@ -14,7 +14,8 @@ export function runLoopHack(_ns, loopHackFileName, host, threadCalc, target, ins
 export function calcThreads(_ns, host, filename, whatServer) {
     ns = _ns;
     let ratio = 1;
-    if (whatServer == 'home') ratio = 0.9;
+    if (whatServer === 'home') ratio = 0.9;
+
     let maxRam = ns.getServerMaxRam(host) * ratio;
     let usedRam = ns.getServerUsedRam(host);
     let jsRam = ns.getScriptRam(filename);
@@ -28,11 +29,11 @@ export function calcThreads(_ns, host, filename, whatServer) {
 
     // TODO: 계산해서 쓰레드 분배하는 거 만들기
     let [hackRatio, weakenRatio, growRatio] = [0, 0, 0];
-    let tmpHackingLvl = ns.getHackingLevel();
+    let tmpHackingLvl = advHackingTarget.length
 
-    if (tmpHackingLvl <= 1000) [hackRatio, weakenRatio, growRatio] = [0.2, 0.3, 0.5];
-    else if (tmpHackingLvl <= 2000) [hackRatio, weakenRatio, growRatio] = [0.125, 0.175, 0.7];
-    else if (tmpHackingLvl > 2000) [hackRatio, weakenRatio, growRatio] = [0.015, 0.185, 0.8];
+    if (tmpHackingLvl <= 2) [hackRatio, weakenRatio, growRatio] = [0.2, 0.3, 0.5];
+    else if (tmpHackingLvl <= 5) [hackRatio, weakenRatio, growRatio] = [0.125, 0.175, 0.7];
+    else if (tmpHackingLvl > 6) [hackRatio, weakenRatio, growRatio] = [0.015, 0.185, 0.8];
 
     let hack = Math.floor(useableThreads * hackRatio);
     if (hack < 1) ++hack;
