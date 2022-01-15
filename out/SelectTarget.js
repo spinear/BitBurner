@@ -14,19 +14,20 @@ export async function main(_ns) {
 
     // 순서대로 정렬된 어레이에서 내 레벨이 높은 타겟만 변수에 넣으며 루프를 돌면 루프 후 저장 된 변수가 내 최대 레벨
     // 상점은 거기서 -1 값을 씀.
-    for (let i = 0; i < advHackingTarget.length; ++i) {
-        let targetLvl = ns.getServerRequiredHackingLevel(advHackingTarget[i]) * 4;
+    for (let i of advHackingTarget) {
+        let targetLvl = ns.getServerRequiredHackingLevel(i) * 4;
 
         if ((myLvl + 5) > targetLvl) {
-            tmpTarget = advHackingTarget[i];
+            tmpTarget = i;
             tmpTarget2 = advHackingTarget[Math.max((j - 1), 0)];
         }
         ++j;
     }
 
-    // 🚫
+    // 🚫 여기 걸린 상태에서 재실행하면 port 값이 null이라 실행 불가
     if (!ns.hasRootAccess(tmpTarget)) {
-        ns.tprint(`ERROR 💩 다음 타겟 ${tmpTarget} 포트 안 열림!`);
+        ns.tprint(`ERROR 💩 다음 타겟 ${tmpTarget} 포트 안 열림!
+        지금 겜 끄면 포트 열기 전까지 스크립트 작동 안 함!!!💩`);
         isSmushed = 'false';
         ns.clearPort(3);
         await ns.writePort(3, isSmushed);

@@ -10,8 +10,8 @@ export async function main(ns) {
     let isSmushed = ns.peek(3);
 
     if (isSmushed == "true") {
-        for (let i = 0; i < serverList.length; ++i) {
-            let host = serverList[i];
+        for (let i of serverList) {
+            let host = i;
             killHackScripts(ns, host);
         }
     }
