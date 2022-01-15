@@ -15,6 +15,9 @@ export async function main(_ns) {
         // 타겟이 바꼈을 때
         if (isSmushed == 'true' && pickedRam[0] >= ns.peek(5)) {
             ns.tprint(`WARN 💻 서버 타겟 교체!`);
+            ns.clearPort(5);
+            await ns.writePort(5, pickedRam[0]);
+
             await installServer(ns, pickedRam);
             return;
         }
@@ -22,8 +25,6 @@ export async function main(_ns) {
         // 이전 램 보다 클 때
         if (pickedRam[0] > ns.peek(5)) {
             ns.tprint(`고른 서버: ${pickedRam[0]} GB`);
-
-            // 이 때만 포트 저장함
             ns.clearPort(5);
             await ns.writePort(5, pickedRam[0]);
 
@@ -55,9 +56,7 @@ async function installServer(_ns, pickedRam) {
         await ns.scp(loopHackFileName.hack, host);
 
         let threadCalc = calcThreads(ns, host, loopHackFileName.weaken);
-
         runLoopHack(ns, loopHackFileName, host, threadCalc, boughtServerHackingTarget, 1);
-
         await ns.sleep(1500);
         ++i;
     }
