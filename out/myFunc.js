@@ -13,7 +13,7 @@ export function runLoopHack(_ns, loopHackFileName, host, threadCalc, target, ins
 //쓰레드 계산 
 export function calcThreads(_ns, host, filename) {
     ns = _ns;
-    let maxRam = ns.getServerMaxRam(host) * 0.95;
+    let maxRam = ns.getServerMaxRam(host) * 0.9;
     let usedRam = ns.getServerUsedRam(host);
     let jsRam = ns.getScriptRam(filename);
     let isSucceed = false;
@@ -57,7 +57,7 @@ export function calcThreads(_ns, host, filename) {
 export function killHackScripts(_ns, target) {
     ns = _ns;
 
-    if (target != "home") {
+    if (target != 'home') {
         ns.killall(target);
     }
     else {

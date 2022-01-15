@@ -12,8 +12,8 @@ export async function main(_ns) {
 	let target = ns.peek(2);
 	let isSmushed = ns.peek(3);
 
-	if (isSmushed == "true" && ns.hasRootAccess(target)) {
-		killHackScripts(ns, "home");
+	if (isSmushed == 'true') {
+		killHackScripts(ns, 'home');
 		let calculatedThreads = calcThreads(ns, host, loopHackFileName.weaken);
 		runLoopHack(ns, loopHackFileName, host, calculatedThreads, target, 1);
 	}
