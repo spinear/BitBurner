@@ -24,7 +24,7 @@ export async function main(_ns) {
         ++j;
     }
 
-    // 🚫 여기 걸린 상태에서 재실행하면 port 값이 null이라 실행 불가
+    // ❌❌❌ 여기 걸린 상태에서 재실행하면 port 값이 null이라 실행 불가
     if (!ns.hasRootAccess(tmpTarget)) {
         ns.tprint(`ERROR 💩 다음 타겟 ${tmpTarget} 포트 안 열림!
         지금 겜 끄면 포트 열기 전까지 스크립트 작동 안 함!!!💩`);

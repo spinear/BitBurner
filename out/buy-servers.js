@@ -22,7 +22,7 @@ export async function main(_ns) {
             if (i === 's-0') {
                 doIhaveServers = true;
                 jServerRam = ns.getServerMaxRam(i);
-                ns.tprint(doIhaveServers + " " + jServerRam);
+                //ns.tprint(doIhaveServers + " " + jServerRam);
                 break;
             }
         }
@@ -34,9 +34,9 @@ export async function main(_ns) {
             return;
         }
 
-        // 서버가 있던 말건 타겟이 바꼈거나 램이 커지면
-        // 타겟이 바꼈을 때
-        if (isSmushed === 'true' && pickedRam[0] >= jServerRam) {
+        // 서버가 있던 말건 타겟이 바뀌고 램이 같거나 크면 서버 교체
+        // ❌❌❌ 근데 이거 왜 안되냐아아아앙
+        if (isSmushed == 'true' && pickedRam[0] >= jServerRam) {
             ns.tprint(`WARN 💻 서버 타겟 교체! ${ns.peek(1)} -> ${ns.peek(2)}`);
             await installServer(ns, pickedRam);
             return;

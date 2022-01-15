@@ -31,7 +31,7 @@ export function calcThreads(_ns, host, filename, whatServer) {
     let [hackRatio, weakenRatio, growRatio] = [0, 0, 0];
     let tmpHackingLvl = ns.getHackingLevel();
 
-    if (tmpHackingLvl <= 1000)
+    if (tmpHackingLvl <= 800)
         [hackRatio, weakenRatio, growRatio] = [0.2, 0.3, 0.5];
     else if (tmpHackingLvl <= 2000)
         [hackRatio, weakenRatio, growRatio] = [0.125, 0.175, 0.7];
