@@ -11,9 +11,11 @@ export function runLoopHack(_ns, loopHackFileName, host, threadCalc, target, ins
 }
 
 //쓰레드 계산 
-export function calcThreads(_ns, host, filename) {
+export function calcThreads(_ns, host, filename, whatServer) {
     ns = _ns;
-    let maxRam = ns.getServerMaxRam(host) * 0.9;
+    let ratio = 1;
+    if (whatServer == 'home') ratio = 0.9;
+    let maxRam = ns.getServerMaxRam(host) * ratio;
     let usedRam = ns.getServerUsedRam(host);
     let jsRam = ns.getScriptRam(filename);
     let isSucceed = false;
@@ -28,12 +30,9 @@ export function calcThreads(_ns, host, filename) {
     let [hackRatio, weakenRatio, growRatio] = [0, 0, 0];
     let tmpHackingLvl = ns.getHackingLevel();
 
-    if (tmpHackingLvl < 1000)
-        [hackRatio, weakenRatio, growRatio] = [0.2, 0.3, 0.5];
-    else if (tmpHackingLvl > 1000 && tmpHackingLvl < 2000)
-        [hackRatio, weakenRatio, growRatio] = [0.125, 0.175, 0.7];
-    else if (tmpHackingLvl > 2000)
-        [hackRatio, weakenRatio, growRatio] = [0.015, 0.185, 0.8];
+    if (tmpHackingLvl <= 1000) [hackRatio, weakenRatio, growRatio] = [0.2, 0.3, 0.5];
+    else if (tmpHackingLvl <= 2000) [hackRatio, weakenRatio, growRatio] = [0.125, 0.175, 0.7];
+    else if (tmpHackingLvl > 2000) [hackRatio, weakenRatio, growRatio] = [0.015, 0.185, 0.8];
 
     let hack = Math.floor(useableThreads * hackRatio);
     if (hack < 1) ++hack;
