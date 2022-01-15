@@ -1,4 +1,4 @@
-import { loopHackFileName, advHackingTarget } from "./settings";
+import { loopHackFileName } from "./settings";
 
 /** @type import(".").NS */
 let ns = null;
@@ -29,11 +29,14 @@ export function calcThreads(_ns, host, filename, whatServer) {
 
     // TODO: 계산해서 쓰레드 분배하는 거 만들기
     let [hackRatio, weakenRatio, growRatio] = [0, 0, 0];
-    let tmpHackingLvl = advHackingTarget.length
+    let tmpHackingLvl = ns.getHackingLevel();
 
-    if (tmpHackingLvl <= 2) [hackRatio, weakenRatio, growRatio] = [0.2, 0.3, 0.5];
-    else if (tmpHackingLvl <= 5) [hackRatio, weakenRatio, growRatio] = [0.125, 0.175, 0.7];
-    else if (tmpHackingLvl > 6) [hackRatio, weakenRatio, growRatio] = [0.015, 0.185, 0.8];
+    if (tmpHackingLvl <= 1000)
+        [hackRatio, weakenRatio, growRatio] = [0.2, 0.3, 0.5];
+    else if (tmpHackingLvl <= 2000)
+        [hackRatio, weakenRatio, growRatio] = [0.125, 0.175, 0.7];
+    else
+        [hackRatio, weakenRatio, growRatio] = [0.015, 0.185, 0.8];
 
     let hack = Math.floor(useableThreads * hackRatio);
     if (hack < 1) ++hack;
