@@ -14,7 +14,7 @@ export async function main(_ns) {
 
 	if (isSmushed == 'true') {
 		killHackScripts(ns, 'home');
-		let calculatedThreads = calcThreads(ns, host, loopHackFileName.weaken);
+		let calculatedThreads = calcThreads(ns, host, loopHackFileName.weaken, 'home');
 		runLoopHack(ns, loopHackFileName, host, calculatedThreads, target, 1);
 	}
 }
