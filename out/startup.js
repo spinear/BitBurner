@@ -3,7 +3,7 @@ let ns = null;
 
 export async function main(_ns) {
 	ns = _ns;
-	await init(ns);
+	init(ns);
 
 	let tmpLVL = 0;
 
@@ -30,11 +30,11 @@ export async function main(_ns) {
 	}
 }
 
-async function init(_ns) {
+function init(_ns) {
 	ns = _ns;
 	ns.tail();
-	ns.clearPort(1); // 비교에 쓸 임시 타겟
-	ns.clearPort(2); // 조건 부 타겟
+	// ns.clearPort(1); // 비교에 쓸 임시 타겟
+	// ns.clearPort(2); // 조건 부 타겟
 	ns.clearPort(3); // 스트링 불린
 	ns.clearPort(4); // 조건 부 타겟의 -1 서버로 상점이 씀
 }
