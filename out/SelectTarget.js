@@ -21,17 +21,18 @@ export async function main(_ns) {
             tmpTarget = i;
             tmpTarget2 = advHackingTarget[Math.max((j - 1), 0)];
         }
+        if (!ns.hasRootAccess(tmpTarget)) {
+            ns.tprint(`ERROR 💩 다음 타겟 ${tmpTarget} 포트 안 열림!`);
+            tmpTarget = advHackingTarget[Math.max((j - 1), 0)];
+            tmpTarget2 = advHackingTarget[Math.max((j - 2), 0)];
+            ns.tprint(`ERROR 💩 이전 타겟 ${tmpTarget}으(로) 복구!`);
+            if (ns.peek(1) === 'NULL PORT DATA') {
+                ns.clearPort(1);
+                await ns.writePort(1, tmpTarget);
+            }
+            break;
+        }
         ++j;
-    }
-
-    // ❌❌❌ 여기 걸린 상태에서 재실행하면 port 값이 null이라 실행 불가
-    if (!ns.hasRootAccess(tmpTarget)) {
-        ns.tprint(`ERROR 💩 다음 타겟 ${tmpTarget} 포트 안 열림!
-        지금 스크립트 멈추면 포트 열기 전까지 스크립트 작동 안 함!!!💩`);
-        isSmushed = 'false';
-        ns.clearPort(3);
-        await ns.writePort(3, isSmushed);
-        return;
     }
 
     // 난장판 임시 변수와 선택된 변수 물물교환
