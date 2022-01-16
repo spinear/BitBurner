@@ -22,7 +22,7 @@ export function calcThreads(_ns, host, filename, whatServer) {
     let isSucceed = false;
 
     let useableThreads = Math.floor((maxRam - usedRam) / jsRam);
-    let rawThreads = Math.floor(maxRam / jsRam);
+    let remainingRam = Math.floor(maxRam - usedRam);
 
     if (useableThreads > 2) isSucceed = true;
     else isSucceed = false;
@@ -47,7 +47,7 @@ export function calcThreads(_ns, host, filename, whatServer) {
     const useableThreadsObj = {
         maxRam: maxRam,
         usedRam: usedRam,
-        rawThreads: rawThreads,
+        remainingRam: remainingRam,
         useableThreads: useableThreads,
         hack: hack,
         weaken: weaken,

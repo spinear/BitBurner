@@ -41,7 +41,7 @@ export async function main(_ns) {
     await ns.writePort(4, tmpTarget2);
 
     // 이전 루프(port 1)와 지금 루프(port 2)의 타겟이 같으면 변한게 없으므로 false
-    if (ns.peek(1) == ns.peek(2)) {
+    if (ns.peek(1) === ns.peek(2)) {
         ns.tprint(`현재 타겟 ${ns.peek(1)} & ${ns.peek(4)}`);
         isSmushed = 'false';
     } else {
