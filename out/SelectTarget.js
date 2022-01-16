@@ -27,7 +27,7 @@ export async function main(_ns) {
     // ❌❌❌ 여기 걸린 상태에서 재실행하면 port 값이 null이라 실행 불가
     if (!ns.hasRootAccess(tmpTarget)) {
         ns.tprint(`ERROR 💩 다음 타겟 ${tmpTarget} 포트 안 열림!
-        지금 겜 끄면 포트 열기 전까지 스크립트 작동 안 함!!!💩`);
+        지금 스크립트 멈추면 포트 열기 전까지 스크립트 작동 안 함!!!💩`);
         isSmushed = 'false';
         ns.clearPort(3);
         await ns.writePort(3, isSmushed);
@@ -42,10 +42,10 @@ export async function main(_ns) {
 
     // 이전 루프(port 1)와 지금 루프(port 2)의 타겟이 같으면 변한게 없으므로 false
     if (ns.peek(1) == ns.peek(2)) {
-        ns.tprint(`WARN 현재 타겟 ${ns.peek(1)} & ${ns.peek(4)}`);
+        ns.tprint(`현재 타겟 ${ns.peek(1)} & ${ns.peek(4)}`);
         isSmushed = 'false';
     } else {
-        ns.tprint(`WARN 타겟 ${ns.peek(1)}이(가) ${ns.peek(2)}로 바뀔꺼임!`);
+        ns.tprint(`INFO 타겟 ${ns.peek(1)}이(가) ${ns.peek(2)}로 바뀔꺼임!`);
 
         // 다음 루프 때 비교를 위해 port 1에 복사
         ns.clearPort(1);

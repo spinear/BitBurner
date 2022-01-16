@@ -28,8 +28,9 @@ export async function main(_ns) {
 
         // 서버가 있던 말건 램이 적던 말던 타겟이 바뀌면 타겟 교체
         // 왜냐면 한번 놓치면 다시 못하기 때문에!
-        if (isSmushed == 'true') {
-            ns.tprint(`WARN 💻 서버 타겟 교체! ${ns.peek(1)} -> ${ns.peek(2)}`);
+        // ❌❌❌근데 true일때 돈이 없어서 못사면 다음 true까지 못바꾸는 거. 
+        if (isSmushed === 'true') {
+            ns.tprint(`WARN 💻 서버 타겟 교체 -> ${ns.peek(2)} / ${pickedRam[0]} GB`);
             await installServer(ns, pickedRam);
             return;
         }
@@ -37,7 +38,7 @@ export async function main(_ns) {
         // 서버가 이미 있는데 낮은 램으로 교체하는 거 방지
         // 스크립트 껐다 켰을 때 무조건 서버 다시 사는 거 방지
         if (doIhaveServers && pickedRam[0] <= jServerRam) {
-            ns.tprint(`INFO 서버 냅둠 / 전: ${jServerRam} GB 후: ${pickedRam[0]} GB`);
+            ns.tprint(`서버 냅둠 / 현재 서버: ${jServerRam} GB 지금 고른 램: ${pickedRam[0]} GB`);
             return;
         }
 

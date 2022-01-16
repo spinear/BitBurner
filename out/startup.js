@@ -3,10 +3,10 @@ let ns = null;
 
 export async function main(_ns) {
 	ns = _ns;
+
 	init(ns);
 
 	let tmpLVL = 0;
-
 	while (true) {
 		if (tmpLVL != ns.getHackingLevel()) {
 			ns.exec('nukeServers.js', 'home');
@@ -24,7 +24,7 @@ export async function main(_ns) {
 			ns.exec('buy-servers.js', 'home');
 		}
 		ns.print(`INFO 💰타겟이 가진 돈 ${ns.nFormat(ns.getServerMoneyAvailable(ns.peek(1)), '0.0a')} 💰`);
-		ns.print(`INFO 🎉포트 1: ${ns.peek(1)} 포트 2: ${ns.peek(2)} 포트 3: ${ns.peek(3)}`);
+		ns.print(`INFO 🎉포트 1: ${ns.peek(1)} 포트 3: ${ns.peek(3)}`);
 		tmpLVL = ns.getHackingLevel();
 		await ns.sleep(60000);
 	}
@@ -38,4 +38,3 @@ function init(_ns) {
 	ns.clearPort(3); // 스트링 불린
 	ns.clearPort(4); // 조건 부 타겟의 -1 서버로 상점이 씀
 }
-

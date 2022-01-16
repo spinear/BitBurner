@@ -26,9 +26,10 @@ export function crackServers(ns, host) {
 
     ns.nuke(host);
 
-    let weakenTime = ns.nFormat((ns.getWeakenTime(host) / 1000), '00:00:00');
-    ns.tprint(`${ns.nFormat(ns.getServerMaxMoney(host), '0.0a')} / wT: ${weakenTime} / Lv: ${srhackingLv} / sLv: ${ns.getServerMinSecurityLevel(host)} - ${host}`);
-    
+    // 뉴크 안한 것만 표시하게 주석처리
+    //let weakenTime = ns.nFormat((ns.getWeakenTime(host) / 1000), '00:00:00');
+    //ns.tprint(`${ns.nFormat(ns.getServerMaxMoney(host), '0.0a')} / wT: ${weakenTime} / Lv: ${srhackingLv} / sLv: ${ns.getServerMinSecurityLevel(host)} - ${host}`);
+
     return true;
 }
 
