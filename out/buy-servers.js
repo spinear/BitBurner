@@ -13,32 +13,31 @@ export async function main(_ns) {
     if (pickedRam[1]) {
 
         // 서버가 이미 존재하는지 검사 후 램 get
-        // 서버가 없으면 jserverRam = 0
-        let j = ns.scan('home');
-        let jServerRam = 0;
+        // 서버가 없으면 jserverRam = 0      
         let doIhaveServers = false;
+        let jServerRam = 0;
+        let j = ns.scan('home');
 
         for (let i of j) {
             if (i === 's-0') {
                 doIhaveServers = true;
                 jServerRam = ns.getServerMaxRam(i);
-                //ns.tprint(doIhaveServers + " " + jServerRam);
                 break;
             }
+        }
+
+        // 서버가 있던 말건 램이 적던 말던 타겟이 바뀌면 타겟 교체
+        // 왜냐면 한번 놓치면 다시 못하기 때문에!
+        if (isSmushed == 'true') {
+            ns.tprint(`WARN 💻 서버 타겟 교체! ${ns.peek(1)} -> ${ns.peek(2)}`);
+            await installServer(ns, pickedRam);
+            return;
         }
 
         // 서버가 이미 있는데 낮은 램으로 교체하는 거 방지
         // 스크립트 껐다 켰을 때 무조건 서버 다시 사는 거 방지
         if (doIhaveServers && pickedRam[0] <= jServerRam) {
             ns.tprint(`INFO 서버 냅둠 / 전: ${jServerRam} GB 후: ${pickedRam[0]} GB`);
-            return;
-        }
-
-        // 서버가 있던 말건 타겟이 바뀌고 램이 같거나 크면 서버 교체
-        // ❌❌❌ 근데 이거 왜 안되냐아아아앙
-        if (isSmushed == 'true' && pickedRam[0] >= jServerRam) {
-            ns.tprint(`WARN 💻 서버 타겟 교체! ${ns.peek(1)} -> ${ns.peek(2)}`);
-            await installServer(ns, pickedRam);
             return;
         }
 
@@ -75,7 +74,6 @@ async function installServer(_ns, pickedRam) {
         await ns.sleep(1500);
         ++i;
     }
-
     ns.tprint(`😎 서버 설치 완료`);
 }
 
