@@ -15,6 +15,7 @@ export async function main(_ns) {
 
 	if (isSmushed == 'true') {
 		killHackScripts(ns, 'home');
+		calcedThreads = calcThreads(ns, host, loopHackFileName.weaken, 'home');
 		runLoopHack(ns, loopHackFileName, host, calcedThreads, target, 1);
 		return;
 	}
@@ -22,6 +23,7 @@ export async function main(_ns) {
 	if ((calcedThreads.remainingRam / calcedThreads.maxRam * 100) > 50) {
 		ns.tprint(`집에 램 증가로 스크립트 재실행!`)
 		killHackScripts(ns, 'home');
+		calcedThreads = calcThreads(ns, host, loopHackFileName.weaken, 'home');
 		runLoopHack(ns, loopHackFileName, host, calcedThreads, target, 1);
 		return;
 	}
