@@ -26,11 +26,17 @@ export async function main(_ns) {
             }
         }
 
-        // 서버가 있던 말건 램이 적던 말던 타겟이 바뀌면 타겟 교체
-        // 왜냐면 한번 놓치면 다시 못하기 때문에!
-        // ❌❌❌근데 true일때 돈이 없어서 못사면 다음 true까지 못바꾸는 거. 
+        // 타겟이 바뀌면 램에 상관없이 서버 재구매
+        // ❌❌❌근데 true일때 돈이 없어서 못사면 다음 true까지 못바꿈
         if (isSmushed === 'true') {
             ns.tprint(`WARN 💻 서버 타겟 교체 -> ${ns.peek(2)} / ${pickedRam[0]} GB`);
+
+            if (pickedRam[0] < jServerRam) {
+                // 📅 TODO: 돈이 없어서 적은 램이 선택 된거기 땜에 
+                // 현재 서버 램 값과 같은 돈이 생길 때까지 따로 실행 되는 js를 만들면
+                // true를 놓쳐도 따로 실행되는 넘이 구매 할 수 있음
+                ns.tprint(`ERROR 근데 적은 램으로 다운그레이드 될 거임!`)
+            }
             await installServer(ns, pickedRam);
             return;
         }
@@ -38,7 +44,7 @@ export async function main(_ns) {
         // 서버가 이미 있는데 낮은 램으로 교체하는 거 방지
         // 스크립트 껐다 켰을 때 무조건 서버 다시 사는 거 방지
         if (doIhaveServers && pickedRam[0] <= jServerRam) {
-            ns.tprint(`서버 냅둠 / 현재 서버: ${jServerRam} GB 지금 고른 램: ${pickedRam[0]} GB`);
+            ns.tprint(`서버 냅둠 / 현재 서버: ${jServerRam} GB / 지금 고른 램: ${pickedRam[0]} GB`);
             return;
         }
 
@@ -81,10 +87,12 @@ async function installServer(_ns, pickedRam) {
 export function selectServerRam(_ns) {
     ns = _ns;
     let ram = 8;
-    let pickedRam = [ram, false]; // 최초값 port 5 = null
+    let pickedRam = [ram, false];
+    let ratio = 1;
 
-    for (let i = 0; i < 10; ++i) {
-        if (ns.getServerMoneyAvailable('home') < ns.getPurchasedServerCost(ram) * 25) {
+    for (let i = 0; i < 11; ++i) {
+        if (i > 8) ratio = 0.5;
+        if (ns.getServerMoneyAvailable('home') * ratio < ns.getPurchasedServerCost(ram) * 25) {
             // 맨 처음 루프에서 if에 걸리면 기본 값을 리턴
             return pickedRam;
         } else {
