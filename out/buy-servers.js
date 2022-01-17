@@ -7,12 +7,14 @@ let ns = null;
 export async function main(_ns) {
     ns = _ns;
     let isSmushed = ns.peek(3);
+
+    // 가진 돈에 맞는 서버를 선택
     let pickedRam = selectServerRam(ns);
 
     // 어느 램이든 서버를 살 수 있을 때
     if (pickedRam[1]) {
 
-        // 서버가 이미 존재하는지 검사 후 램 get
+        // 서버가 이미 존재하는지 검사 후 존재하는 서버 램 get
         // 서버가 없으면 jserverRam = 0      
         let doIhaveServers = false;
         let jServerRam = 0;
@@ -26,16 +28,19 @@ export async function main(_ns) {
             }
         }
 
-        // 타겟이 바뀌면 램에 상관없이 서버 재구매
-        // ❌❌❌근데 true일때 돈이 없어서 못사면 다음 true까지 못바꿈
+        // 타겟이 바뀌면 서버 재구매
         if (isSmushed === 'true') {
             ns.tprint(`WARN 💻 서버 타겟 교체 -> ${ns.peek(2)} / ${pickedRam[0]} GB`);
 
+            // 근데 지금 가진 서버보다 작으면 돈이 적은 거임!
             if (pickedRam[0] < jServerRam) {
-                // 📅 TODO: 돈이 없어서 적은 램이 선택 된거기 땜에 
-                // 현재 서버 램 값과 같은 돈이 생길 때까지 따로 실행 되는 js를 만들면
-                // true를 놓쳐도 따로 실행되는 넘이 구매 할 수 있음
-                ns.tprint(`ERROR 근데 적은 램으로 다운그레이드 될 거임!`)
+                ns.tprint(`ERROR 💻 돈이 적음! 돈 생길때까지 루프 검사 할꺼임`);
+                while (pickedRam[0] >= jServerRam) {
+                    pickedRam = selectServerRam(ns);
+                    await ns.sleep(30000);
+                    ns.tprint(`WARN 💻 돈 기둘리는 중...${pickedRam[0]} GB`);
+                }
+                ns.tprint(`INFO 💻 이제 돈 생긴듯? ${pickedRam[0]} GB`);
             }
             await installServer(ns, pickedRam);
             return;
