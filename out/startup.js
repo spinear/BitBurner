@@ -8,6 +8,8 @@ export async function main(_ns) {
 
 	let tmpLVL = 0;
 	while (true) {
+		ns.exec('darkweb.js', 'home');
+
 		if (tmpLVL != ns.getHackingLevel()) {
 			ns.exec('nukeServers.js', 'home');
 			await ns.sleep(500);

@@ -24,7 +24,7 @@ export function calcThreads(_ns, host, filename, whatServer) {
     let useableThreads = Math.floor((maxRam - usedRam) / jsRam);
     let remainingRam = Math.floor(maxRam - usedRam);
 
-    if (useableThreads > 2) isSucceed = true;
+    if (useableThreads > 3) isSucceed = true;
     else isSucceed = false;
 
     // TODO: 계산해서 쓰레드 분배하는 거 만들기
