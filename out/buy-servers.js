@@ -93,10 +93,9 @@ export function selectServerRam(_ns) {
     ns = _ns;
     let ram = 8;
     let pickedRam = [ram, false];
-    let ratio = 1;
 
     for (let i = 0; i < 11; ++i) {
-        if (i > 8) ratio = 0.5;
+        let ratio = i > 8 ? 0.5 : 1;
         if (ns.getServerMoneyAvailable('home') * ratio < ns.getPurchasedServerCost(ram) * 25) {
             // 맨 처음 루프에서 if에 걸리면 기본 값을 리턴
             return pickedRam;

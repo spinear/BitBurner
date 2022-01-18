@@ -27,16 +27,13 @@ export function calcThreads(_ns, host, filename, whatServer) {
     if (useableThreads > 3) isSucceed = true;
     else isSucceed = false;
 
-    // TODO: 계산해서 쓰레드 분배하는 거 만들기
     let [hackRatio, weakenRatio, growRatio] = [0, 0, 0];
     let tmpHackingLvl = ns.getHackingLevel();
 
-    if (tmpHackingLvl <= 800)
-        [hackRatio, weakenRatio, growRatio] = [0.2, 0.3, 0.5];
-    else if (tmpHackingLvl <= 2000)
-        [hackRatio, weakenRatio, growRatio] = [0.125, 0.175, 0.7];
-    else
-        [hackRatio, weakenRatio, growRatio] = [0.015, 0.185, 0.8];
+    [hackRatio, weakenRatio, growRatio] =
+        tmpHackingLvl <= 800 ? [0.2, 0.3, 0.5]
+            : tmpHackingLvl <= 2000 ? [0.125, 0.175, 0.7]
+                : [0.015, 0.185, 0.8];
 
     let hack = Math.floor(useableThreads * hackRatio);
     if (hack < 1) ++hack;
