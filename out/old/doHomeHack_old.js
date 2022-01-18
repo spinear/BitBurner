@@ -1,7 +1,7 @@
-import { calcThreads, runLoopHack } from "./myFunc.js";
-import { advHomeTarget, homeHackingTarget, initialThreads, loopHackFileName } from "./settings.js";
+import { calcThreads, runLoopHack } from "../myFunc.js";
+import { advHomeTarget, homeHackingTarget, initialThreads, loopHackFileName } from "../settings.js";
 
-/** @type import(".").NS */
+/** @type import("..").NS */
 let ns = null;
 
 export function main(_ns) {
