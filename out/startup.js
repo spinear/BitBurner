@@ -3,27 +3,26 @@ let ns = null;
 
 export async function main(_ns) {
 	ns = _ns;
+	let tmpLVL = 0;
 
 	init(ns);
+	ns.exec('FactionThings.js', 'home');
 
-	let tmpLVL = 0;
 	while (true) {
 		ns.exec('darkweb.js', 'home');
 
 		if (tmpLVL != ns.getHackingLevel()) {
 			ns.exec('nukeServers.js', 'home');
 			await ns.sleep(500);
-
 			ns.exec('SelectTarget.js', 'home');
 			await ns.sleep(500);
-
 			ns.exec('doHomeHack.js', 'home');
 			await ns.sleep(1000);
-
 			ns.exec('doExtServerHack.js', 'home');
 			await ns.sleep(1000);
-
 			ns.exec('buy-servers.js', 'home');
+			await ns.sleep(1000);
+
 		}
 		ns.print(`INFO 💰타겟이 가진 돈 ${ns.nFormat(ns.getServerMoneyAvailable(ns.peek(1)), '0.0a')} 💰`);
 		ns.print(`INFO 🎉포트 1: ${ns.peek(1)} 포트 3: ${ns.peek(3)}`);
