@@ -1,14 +1,16 @@
 /** @type import('.').NS */
 let ns = null;
 
+// 3 GB
 export async function main(_ns) {
 	ns = _ns;
 	let tmpLVL = 0;
 
 	// 자체 루프 혹은 원샷 스크립트
 	init(ns);
-	ns.exec('factionThings.js', 'home');
+	ns.exec('factionThings.js', 'home');  // 9 GB
 
+	// 동시에 실행 되는 스크립트 젤 큰 램 = 19 GB
 	while (true) {
 		ns.exec('darkweb.js', 'home');
 
@@ -21,7 +23,7 @@ export async function main(_ns) {
 			await ns.sleep(1000);
 			ns.exec('doExtServerHack.js', 'home');
 			await ns.sleep(1000);
-			ns.exec('buy-servers.js', 'home');
+			ns.exec('buy-servers.js', 'home'); // 7 GB
 		}
 		ns.print(`INFO 💰타겟이 가진 돈 ${ns.nFormat(ns.getServerMoneyAvailable(ns.peek(1)), '0.0a')} 💰`);
 		ns.print(`INFO 🎉포트 1: ${ns.peek(1)} 포트 3: ${ns.peek(3)}`);

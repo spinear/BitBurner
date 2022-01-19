@@ -8,6 +8,7 @@ export async function main(_ns) {
     ];
 
     while (factionList.length > 0) {
+        await ns.sleep(60000);
         for (let i of factionList) {
             if (ns.hasRootAccess(i)) {
                 await connectNbackdoor(ns, i);
