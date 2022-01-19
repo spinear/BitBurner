@@ -35,9 +35,9 @@ export async function main(_ns) {
             // 근데 지금 가진 서버보다 작으면 돈이 적은 거임!
             if (pickedRam[0] < jServerRam) {
                 ns.tprint(`ERROR 💻 돈이 적음! 돈 생길때까지 루프 검사 할꺼임`);
-                while (pickedRam[0] >= jServerRam) {
+                while (pickedRam[0] < jServerRam) {
                     pickedRam = selectServerRam(ns);
-                    await ns.sleep(30000);
+                    await ns.sleep(10000);
                     ns.tprint(`WARN 💻 돈 기둘리는 중...${pickedRam[0]} GB`);
                 }
                 ns.tprint(`INFO 💻 이제 돈 생긴듯? ${pickedRam[0]} GB`);
