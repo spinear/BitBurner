@@ -11,12 +11,16 @@ export function runLoopHack(_ns, loopHackFileName, host, threadCalc, target, ins
 }
 
 //쓰레드 계산 
-export function calcThreads(_ns, host, filename, whatServer) {
+export function calcThreads(_ns, host, filename) {
     ns = _ns;
-    let ratio = 1;
-    if (whatServer === 'home') ratio = 0.9;
-
-    let maxRam = ns.getServerMaxRam(host) * ratio;
+    let maxRam = ns.getServerMaxRam(host)
+    let ratio =
+        host === 'home' && maxRam <= 32 ? 0.4
+            : host === 'home' && maxRam <= 64 ? 0.7
+                : host === 'home' && maxRam <= 128 ? 0.85
+                    : host === 'home' && maxRam > 128 ? 0.9
+                        : 1;
+    maxRam = maxRam * ratio;
     let usedRam = ns.getServerUsedRam(host);
     let jsRam = ns.getScriptRam(filename);
     let isSucceed = false;

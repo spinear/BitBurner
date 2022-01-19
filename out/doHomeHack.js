@@ -11,11 +11,11 @@ export async function main(_ns) {
 	let target = ns.peek(2);
 	let isSmushed = ns.peek(3);
 
-	let calcedThreads = calcThreads(ns, host, loopHackFileName.weaken, 'home');
+	let calcedThreads = calcThreads(ns, host, loopHackFileName.weaken);
 
 	if (isSmushed == 'true') {
 		killHackScripts(ns, 'home');
-		calcedThreads = calcThreads(ns, host, loopHackFileName.weaken, 'home');
+		calcedThreads = calcThreads(ns, host, loopHackFileName.weaken);
 		runLoopHack(ns, loopHackFileName, host, calcedThreads, target, 1);
 		return;
 	}
@@ -23,7 +23,7 @@ export async function main(_ns) {
 	if ((calcedThreads.remainingRam / calcedThreads.maxRam * 100) > 50) {
 		ns.tprint(`집에 램 증가로 스크립트 재실행!`)
 		killHackScripts(ns, 'home');
-		calcedThreads = calcThreads(ns, host, loopHackFileName.weaken, 'home');
+		calcedThreads = calcThreads(ns, host, loopHackFileName.weaken);
 		runLoopHack(ns, loopHackFileName, host, calcedThreads, target, 1);
 		return;
 	}
