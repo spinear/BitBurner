@@ -3,18 +3,23 @@ let ns = null;
 
 export async function main(_ns) {
     ns = _ns;
-    let factionList = [
+    let factionServers = [
         "CSEC", "avmnite-02h", "I.I.I.I", "run4theh111z"
     ];
+    let factionList = [
+        "CyberSec", "NiteSec", "The Black Hand", "BitRunners"
+    ];
 
-    while (factionList.length > 0) {
+    while (factionServers.length > 0) {
         await ns.sleep(60000);
-        for (let i of factionList) {
+        for (let i of factionServers) {
             if (ns.hasRootAccess(i)) {
                 await connectNbackdoor(ns, i);
-                await ns.sleep(60000);
-                ns.joinFaction(target);
-                factionList = factionList.slice(1);
+                await ns.sleep(30000);
+                factionServers = factionServers.slice(1);
+                for (let j of factionList) {
+                    ns.joinFaction(j);
+                }
             }
         }
     }
