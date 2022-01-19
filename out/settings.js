@@ -6,13 +6,17 @@ export const loopHackFileName = {
     hack: "hack.js"
 };
 
-// 구매 서버 해킹 타겟
-export const boughtServerHackingTarget = "joesguns";
-export const boughtServerRam = 16;
-
 export const advHackingTarget = [
     "n00dles", "harakiri-sushi", "phantasy", "omega-net",
     "the-hub", "catalyst", "rho-construction", "global-pharm", "b-and-a"
+];
+
+export let factionServers = [
+    "CSEC", "avmnite-02h", "I.I.I.I", "run4theh111z"
+];
+
+export let factionList = [
+    "CyberSec", "NiteSec", "The Black Hand", "BitRunners"
 ];
 
 export const serverList = [

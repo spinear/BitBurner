@@ -1,16 +1,13 @@
+import { factionList, factionServers } from './settings';
+
 /** @type import('.').NS */
 let ns = null;
 
 export async function main(_ns) {
     ns = _ns;
-    let factionServers = [
-        "CSEC", "avmnite-02h", "I.I.I.I", "run4theh111z"
-    ];
-    let factionList = [
-        "CyberSec", "NiteSec", "The Black Hand", "BitRunners"
-    ];
 
     while (factionServers.length > 0) {
+        ns.print(factionServers);
         await ns.sleep(60000);
         for (let i of factionServers) {
             if (ns.hasRootAccess(i)) {
@@ -23,7 +20,7 @@ export async function main(_ns) {
             }
         }
     }
-    ns.tprint(`INFO 🚪 BACKDOORED 🚪`)
+    ns.tprint(`INFO 🚪 빽도어 & 팩션 가입 끝... 아님 어쩔 수 엄꽁... 🚪`)
 }
 
 // Stole from https://github.com/jaguilar/bitburner_scripts/blob/master/augment.js
@@ -58,7 +55,7 @@ async function connectNbackdoor(_ns, server) {
     if (!path) {
         throw new Error("no path to " + server);
     }
-    ns.tprint(path);
+    ns.print(path);
     for (let s of path.slice(1)) {
         ns.connect(s);
     }
