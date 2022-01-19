@@ -5,16 +5,18 @@ let ns = null;
 
 export async function main(_ns) {
     ns = _ns;
+    let fl = factionList;
+    let fs = factionServers;
 
-    while (factionServers.length > 0) {
-        ns.print(factionServers);
+    while (fs.length > 0) {
+        ns.print(fs);
         await ns.sleep(60000);
-        for (let i of factionServers) {
+        for (let i of fs) {
             if (ns.hasRootAccess(i)) {
                 await connectNbackdoor(ns, i);
                 await ns.sleep(30000);
-                factionServers = factionServers.slice(1);
-                for (let j of factionList) {
+                fs = fs.slice(1);
+                for (let j of fl) {
                     ns.joinFaction(j);
                 }
             }

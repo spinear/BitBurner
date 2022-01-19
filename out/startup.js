@@ -1,16 +1,14 @@
 /** @type import('.').NS */
 let ns = null;
 
-// 3 GB
 export async function main(_ns) {
 	ns = _ns;
 	let tmpLVL = 0;
 
 	// 자체 루프 혹은 원샷 스크립트
 	init(ns);
-	ns.exec('factionThings.js', 'home');  // 9 GB
+	ns.exec('factionThings.js', 'home');
 
-	// 동시에 실행 되는 스크립트 젤 큰 램 = 19 GB
 	while (true) {
 		ns.exec('darkweb.js', 'home');
 

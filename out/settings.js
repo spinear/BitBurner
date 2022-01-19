@@ -1,9 +1,9 @@
 /** @param {NS} ns **/
 
 export const loopHackFileName = {
-    weaken: "weaken.js",
-    grow: "grow.js",
-    hack: "hack.js"
+    vWeaken: "weaken.js",
+    vGrow: "grow.js",
+    vHack: "hack.js"
 };
 
 export const advHackingTarget = [
@@ -11,11 +11,11 @@ export const advHackingTarget = [
     "the-hub", "catalyst", "rho-construction", "global-pharm", "b-and-a"
 ];
 
-export let factionServers = [
+export const factionServers = [
     "CSEC", "avmnite-02h", "I.I.I.I", "run4theh111z"
 ];
 
-export let factionList = [
+export const factionList = [
     "CyberSec", "NiteSec", "The Black Hand", "BitRunners"
 ];
 

@@ -47,7 +47,6 @@ export async function main(_ns) {
         }
 
         // 서버가 이미 있는데 낮은 램으로 교체하는 거 방지
-        // 스크립트 껐다 켰을 때 무조건 서버 다시 사는 거 방지
         if (doIhaveServers && pickedRam[0] <= jServerRam) {
             ns.tprint(`서버 냅둠 / 현재 서버: ${jServerRam} GB / 지금 고른 램: ${pickedRam[0]} GB`);
             return;
@@ -77,11 +76,11 @@ async function installServer(_ns, pickedRam) {
     while (i < ns.getPurchasedServerLimit()) {
         let host = ns.purchaseServer('s-' + i, pickedRam[0]);
 
-        await ns.scp(loopHackFileName.weaken, host);
-        await ns.scp(loopHackFileName.grow, host);
-        await ns.scp(loopHackFileName.hack, host);
+        await ns.scp(loopHackFileName.vWeaken, host);
+        await ns.scp(loopHackFileName.vGrow, host);
+        await ns.scp(loopHackFileName.vHack, host);
 
-        let threadCalc = calcThreads(ns, host, loopHackFileName.weaken);
+        let threadCalc = calcThreads(ns, host, loopHackFileName.vWeaken);
         runLoopHack(ns, loopHackFileName, host, threadCalc, boughtServerHackingTarget, 1);
         await ns.sleep(1500);
         ++i;

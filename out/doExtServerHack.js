@@ -19,13 +19,13 @@ export async function main(ns) {
     // 뉴크 후 파일 업로드
     let j = 0;
     for (let host of serverList) {
-        let threadCalc = calcThreads(ns, host, loopHackFileName.weaken);
+        let threadCalc = calcThreads(ns, host, loopHackFileName.vWeaken);
 
         // 파일을 업로드 할 서버의 쓰레드와 루트 엑세스를 검사
         if (threadCalc.isSucceed && ns.hasRootAccess(host)) {
-            await ns.scp(loopHackFileName.weaken, host);
-            await ns.scp(loopHackFileName.grow, host);
-            await ns.scp(loopHackFileName.hack, host);
+            await ns.scp(loopHackFileName.vWeaken, host);
+            await ns.scp(loopHackFileName.vGrow, host);
+            await ns.scp(loopHackFileName.vHack, host);
             hackingFileCopiedServers[j] = host;
             ++j;
         }
@@ -33,7 +33,7 @@ export async function main(ns) {
 
     // 성공한 서버만 루프 해킹 실행
     for (let host of hackingFileCopiedServers) {
-        let threadCalc = calcThreads(ns, host, loopHackFileName.weaken);
+        let threadCalc = calcThreads(ns, host, loopHackFileName.vWeaken);
 
         // 해킹 할 서버의 루트 엑세스를 검사
         if (ns.hasRootAccess(target)) {
