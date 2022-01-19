@@ -5,8 +5,9 @@ export async function main(_ns) {
 	ns = _ns;
 	let tmpLVL = 0;
 
+	// 자체 루프 혹은 원샷 스크립트
 	init(ns);
-	ns.exec('FactionThings.js', 'home');
+	ns.exec('factionThings.js', 'home');
 
 	while (true) {
 		ns.exec('darkweb.js', 'home');
@@ -21,8 +22,6 @@ export async function main(_ns) {
 			ns.exec('doExtServerHack.js', 'home');
 			await ns.sleep(1000);
 			ns.exec('buy-servers.js', 'home');
-			await ns.sleep(1000);
-
 		}
 		ns.print(`INFO 💰타겟이 가진 돈 ${ns.nFormat(ns.getServerMoneyAvailable(ns.peek(1)), '0.0a')} 💰`);
 		ns.print(`INFO 🎉포트 1: ${ns.peek(1)} 포트 3: ${ns.peek(3)}`);
