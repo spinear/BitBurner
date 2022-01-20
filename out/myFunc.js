@@ -67,7 +67,7 @@ export function calcThreads(_ns, host, filename) {
 
     let vHack = Math.max(Math.floor(useableThreads * hackRatio), 1);
     let vWeaken = Math.max(Math.floor(useableThreads * weakenRatio), 1);
-    let vGrow = Math.floor(useableThreads * growRatio);
+    let vGrow = Math.max(Math.floor(useableThreads * growRatio), 1);
 
     // 쉐어 계산
     let shareRam = ns.getServerMaxRam(host);
