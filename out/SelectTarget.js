@@ -12,15 +12,19 @@ export async function main(_ns) {
     let isSmushed = 'false'
     let j = 0;
 
-    // 순서대로 정렬된 어레이에서 내 레벨이 높은 타겟만 변수에 넣으며 루프를 돌면 루프 후 저장 된 변수가 내 최대 레벨
+    // 이거슨 정해놓은 어레이에서 내 레벨에 맞는 타겟을 고르는 거시다
+
+    // 순서대로 정렬된 어레이에서 내 레벨이 높은 타겟만 변수에 넣으며 루프를 돌면 루프 후 저장 된 변수가 내 최대 레벨 타겟
     // 상점은 거기서 -1 값을 씀.
     for (let i of advHackingTarget) {
+        // 내 레벨이 타겟레벨의 4배일 때 해킹 타겟으로 잡을꺼
         let targetLvl = ns.getServerRequiredHackingLevel(i) * 4;
 
         if ((myLvl + 5) > targetLvl) {
             tmpTarget = i;
             tmpTarget2 = advHackingTarget[Math.max((j - 1), 0)];
         }
+
         if (!ns.hasRootAccess(tmpTarget)) {
             ns.tprint(`ERROR 💩 다음 타겟 ${tmpTarget} 포트 안 열림!`);
             tmpTarget = advHackingTarget[Math.max((j - 1), 0)];
@@ -35,7 +39,7 @@ export async function main(_ns) {
         ++j;
     }
 
-    // 난장판 임시 변수와 선택된 변수 물물교환
+    // 이 스크립트는 원샷이므로 변수값 보존을 위해 포트를 씀
     ns.clearPort(2);
     await ns.writePort(2, tmpTarget);
     ns.clearPort(4);
@@ -47,9 +51,7 @@ export async function main(_ns) {
         isSmushed = 'false';
     } else {
         ns.tprint(`INFO 타겟 ${ns.peek(1)}이(가) ${ns.peek(2)}로 바뀔꺼임!`);
-
-        // 다음 루프 때 비교를 위해 port 1에 복사
-        ns.clearPort(1);
+        ns.clearPort(1);    // 다음 루프 때 비교를 위해 port 1에 복사
         await ns.writePort(1, ns.peek(2));
         isSmushed = 'true';
     }

@@ -14,8 +14,8 @@ export async function main(_ns) {
     // 어느 램이든 서버를 살 수 있을 때
     if (pickedRam[1]) {
 
-        // 서버가 이미 존재하는지 검사 후 존재하는 서버 램 get
-        // 서버가 없으면 jserverRam = 0      
+        // 서버가 이미 존재하는지 검사 후 존재하는 서버의 램을 get
+        // 서버가 없으면 jserverRam = 0
         let doIhaveServers = false;
         let jServerRam = 0;
         let j = ns.scan('home');
@@ -28,11 +28,11 @@ export async function main(_ns) {
             }
         }
 
-        // 타겟이 바뀌면 서버 재구매
+        // 타겟이 바뀌면 무조건 서버 재구매
         if (isSmushed === 'true') {
             ns.tprint(`WARN 💻 서버 타겟 교체 -> ${ns.peek(2)} / ${pickedRam[0]} GB`);
 
-            // 근데 지금 가진 서버보다 작으면 돈이 적은 거임!
+            // 근데 지금 가진 서버보다 작으면 안됨!
             if (pickedRam[0] < jServerRam) {
                 ns.tprint(`ERROR 💻 돈이 적음! 돈 생길때까지 루프 검사 할꺼임`);
                 while (pickedRam[0] < jServerRam) {
@@ -93,7 +93,10 @@ export function selectServerRam(_ns) {
     let ram = 8;
     let pickedRam = [ram, false];
 
+    // 루프를 돌면서 pickedRam[0]에 내가 살수 있는 램을 넣다가 내 돈이 모자르면 
+    // 이전에 저장된 램이 내가 살 수 있는 램이므로 그걸 리턴
     for (let i = 0; i < 11; ++i) {
+        // 큰 서버를 살때 돈이 다 털리는걸 막기 위해 몇 램부터 돈을 50퍼 남김
         let ratio = i > 8 ? 0.5 : 1;
         if (ns.getServerMoneyAvailable('home') * ratio < ns.getPurchasedServerCost(ram) * 25) {
             // 맨 처음 루프에서 if에 걸리면 기본 값을 리턴

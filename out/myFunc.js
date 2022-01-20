@@ -33,12 +33,14 @@ export function letsShare(_ns, useableShare) {
 export function calcThreads(_ns, host, filename) {
     ns = _ns;
     let maxRam = ns.getServerMaxRam(host)
+
+    // 싱귤레러티 API를 위해 내 컴 램에 따라 비율을 다르게 줌 (지금 최소 19GB 남겨야 함)
     let ratio =
         host === 'home' && maxRam <= 32 ? 0.4
             : host === 'home' && maxRam <= 64 ? 0.7
                 : host === 'home' && maxRam <= 128 ? 0.85
                     : host === 'home' && maxRam <= 256 ? 0.9
-                        : host === 'home' && maxRam >= 1024 ? 0.69 // share()를 쓰기 위해 비움
+                        : host === 'home' && maxRam >= 1024 ? 0.69 // 이때부턴 share()를 쓰기 위해 더 비움
                             : 1;
 
     maxRam = maxRam * ratio;
@@ -56,6 +58,7 @@ export function calcThreads(_ns, host, filename) {
     let [hackRatio, weakenRatio, growRatio] = [0, 0, 0];
     let tmpHackingLvl = ns.getHackingLevel();
 
+    // 레벨에 따라 해킹 파일 쓰레드 조절
     [hackRatio, weakenRatio, growRatio] =
         tmpHackingLvl <= 800 ? [0.2, 0.3, 0.5]
             : tmpHackingLvl <= 2000 ? [0.125, 0.175, 0.7]
