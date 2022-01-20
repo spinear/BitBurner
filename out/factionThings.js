@@ -8,7 +8,7 @@ export async function main(_ns) {
     let fl = factionList;
     let fs = factionServers;
 
-    // 포루프에서 백도어를 깔고 어레이를 slice하는데 다 지우지 못했다면 0일 될때까지 무한 루프를 돈다
+    // 포루프에서 백도어를 깔고 어레이를 slice하는데 다 지우지 못했다면 무한 루프를 돈다
     while (fs.length > 0) {
         ns.print(fs);
         await ns.sleep(60000);
