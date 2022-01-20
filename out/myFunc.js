@@ -33,7 +33,6 @@ export function letsShare(_ns, useableShare) {
 export function calcThreads(_ns, host, filename) {
     ns = _ns;
     let maxRam = ns.getServerMaxRam(host)
-    let shareRam = ns.getServerMaxRam(host);
     let ratio =
         host === 'home' && maxRam <= 32 ? 0.4
             : host === 'home' && maxRam <= 64 ? 0.7
@@ -45,26 +44,14 @@ export function calcThreads(_ns, host, filename) {
     maxRam = maxRam * ratio;
     let usedRam = ns.getServerUsedRam(host);
     let jsRam = ns.getScriptRam(filename);
-    let shareFileRam = 0;
     let useableShare = 0;
     let isSucceed = false;
-    let canShare = false;
 
     let useableThreads = Math.floor((maxRam - usedRam) / jsRam);
     let remainingRam = Math.floor(maxRam - usedRam);
 
-    if (ratio === 0.69) {
-        shareRam = shareRam * 0.2;
-        shareFileRam = ns.getScriptRam('share.js');
-        useableShare = Math.floor(shareRam / shareFileRam);
-        if (useableShare > 50) canShare = true;
-        else canShare = false;
-        letsShare(ns, useableShare);
-    }
-
     if (useableThreads > 3) isSucceed = true;
     else isSucceed = false;
-
 
     let [hackRatio, weakenRatio, growRatio] = [0, 0, 0];
     let tmpHackingLvl = ns.getHackingLevel();
@@ -74,11 +61,22 @@ export function calcThreads(_ns, host, filename) {
             : tmpHackingLvl <= 2000 ? [0.125, 0.175, 0.7]
                 : [0.015, 0.185, 0.8];
 
-    let vHack = Math.floor(useableThreads * hackRatio);
-    if (vHack < 1) ++vHack;
-    let vWeaken = Math.floor(useableThreads * weakenRatio);
-    if (vWeaken < 1) ++vWeaken;
+    let vHack = Math.max(Math.floor(useableThreads * hackRatio), 1);
+    let vWeaken = Math.max(Math.floor(useableThreads * weakenRatio), 1);
     let vGrow = Math.floor(useableThreads * growRatio);
+
+    // 쉐어 계산
+    let shareRam = ns.getServerMaxRam(host);
+    let shareFileRam = 0;
+    let canShare = false;
+    if (ratio === 0.69) {
+        shareRam = shareRam * 0.2;
+        shareFileRam = ns.getScriptRam('share.js');
+        useableShare = Math.floor(shareRam / shareFileRam);
+        if (useableShare > 50) canShare = true;
+        else canShare = false;
+        letsShare(ns, useableShare);
+    }
 
     const useableThreadsObj = {
         maxRam: maxRam,
