@@ -95,7 +95,7 @@ export function selectServerRam(_ns) {
 
     // 루프를 돌면서 pickedRam[0]에 내가 살수 있는 램을 넣다가 내 돈이 모자르면 
     // 이전에 저장된 램이 내가 살 수 있는 램이므로 그걸 리턴
-    for (let i = 0; i < 11; ++i) {
+    for (let i = 0; i < 12; ++i) {
         // 큰 서버를 살때 돈이 다 털리는걸 막기 위해 몇 램부터 돈을 50퍼 남김
         let ratio = i > 8 ? 0.5 : 1;
         if (ns.getServerMoneyAvailable('home') * ratio < ns.getPurchasedServerCost(ram) * 25) {
