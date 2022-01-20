@@ -62,7 +62,8 @@ export function calcThreads(_ns, host, filename) {
     [hackRatio, weakenRatio, growRatio] =
         tmpHackingLvl <= 800 ? [0.2, 0.3, 0.5]
             : tmpHackingLvl <= 2000 ? [0.125, 0.175, 0.7]
-                : [0.015, 0.185, 0.8];
+                : tmpHackingLvl <= 3000 ? [0.015, 0.185, 0.8]
+                    : [0.01, 0.15, 0.84]
 
     let vHack = Math.max(Math.floor(useableThreads * hackRatio), 1);
     let vWeaken = Math.max(Math.floor(useableThreads * weakenRatio), 1);
