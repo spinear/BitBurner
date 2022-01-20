@@ -8,7 +8,7 @@ export const loopHackFileName = {
 
 export const advHackingTarget = [
     "n00dles", "harakiri-sushi", "phantasy", "omega-net",
-    "the-hub", "catalyst", "rho-construction", "global-pharm", "b-and-a"
+    "the-hub", "catalyst", "rho-construction", "global-pharm", "b-and-a", "megacorp"
 ];
 
 export const factionServers = [
@@ -16,7 +16,7 @@ export const factionServers = [
 ];
 
 export const factionList = [
-    "CyberSec", "NiteSec", "The Black Hand", "BitRunners"
+    "CyberSec", "NiteSec", "The Black Hand", "BitRunners", "Daedalus"
 ];
 
 export const serverList = [
