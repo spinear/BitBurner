@@ -21,7 +21,7 @@ export const factionList = [
 
 export const serverList = [
     //factions
-    "CSEC", "avmnite-02h", "I.I.I.I", "run4theh111z",
+    "CSEC", "avmnite-02h", "I.I.I.I", "run4theh111z", "w0r1d_d43m0n",
     "n00dles", "foodnstuff", "sigma-cosmetics", "joesguns", "nectar-net", "hong-fang-tea",
     "harakiri-sushi", "neo-net", "zer0", "max-hardware", "iron-gym",
     "phantasy", "silver-helix", "omega-net", "crush-fitness", "johnson-ortho",
