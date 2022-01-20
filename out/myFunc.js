@@ -39,7 +39,7 @@ export function calcThreads(_ns, host, filename) {
         host === 'home' && maxRam <= 32 ? 0.4
             : host === 'home' && maxRam <= 64 ? 0.7
                 : host === 'home' && maxRam <= 128 ? 0.85
-                    : host === 'home' && maxRam <= 256 ? 0.9
+                    : host === 'home' && maxRam <= 512 ? 0.9
                         : host === 'home' && maxRam >= 1024 ? 0.69 // 이때부턴 share()를 쓰기 위해 더 비움
                             : 1;
 
