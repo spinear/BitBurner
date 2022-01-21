@@ -12,15 +12,15 @@ export async function main(_ns) {
 		if (ns.peek(5) === 'true') ns.exec('darkweb.js', 'home');
 
 		ns.exec('nukeServers.js', 'home');
-		await ns.sleep(500);
+		await ns.asleep(500);
+		ns.exec('selectTarget.js', 'home');
+		await ns.asleep(500);
 		ns.exec('factionJoin.js', 'home');
-		await ns.sleep(1000);
-		ns.exec('SelectTarget.js', 'home');
-		await ns.sleep(500);
+		await ns.asleep(500);
 		ns.exec('doHomeHack.js', 'home');
-		await ns.sleep(1000);
+		await ns.asleep(500);
 		ns.exec('doExtServerHack.js', 'home');
-		await ns.sleep(1000);
+		await ns.asleep(500);
 		ns.exec('buy-servers.js', 'home');
 
 		ns.print(`INFO 💰타겟이 가진 돈 ${ns.nFormat(ns.getServerMoneyAvailable(ns.peek(1)), '0.0a')} 💰`);

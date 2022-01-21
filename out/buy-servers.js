@@ -22,9 +22,9 @@ export async function main(_ns) {
         for (let i of j) {
             if (i === 's-0') {
                 doIhaveServers = true;
+                jServerRam = ns.getServerMaxRam(i);
                 ns.clearPort(5);
                 await ns.writePort(5, 'true');
-                jServerRam = ns.getServerMaxRam(i);
                 break;
             }
         }
