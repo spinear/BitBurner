@@ -3,10 +3,8 @@ let ns = null;
 
 export async function main(_ns) {
 	ns = _ns;
-
 	// 자체 루프 혹은 원샷 스크립트
 	await init(ns);
-
 	while (true) {
 		// 서버를 안샀으면 프로그램 구매 안함
 		if (ns.peek(5) === 'true') ns.exec('darkweb.js', 'home');
@@ -15,8 +13,12 @@ export async function main(_ns) {
 		await ns.asleep(500);
 		ns.exec('selectTarget.js', 'home');
 		await ns.asleep(500);
+
+		ns.exec('factionWorks.js', 'home');
+		await ns.asleep(500);
 		ns.exec('factionJoin.js', 'home');
 		await ns.asleep(500);
+
 		ns.exec('doHomeHack.js', 'home');
 		await ns.asleep(500);
 		ns.exec('doExtServerHack.js', 'home');

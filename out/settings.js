@@ -20,16 +20,18 @@ export const factionList = [
 ];
 
 export const augList = [
-    'Cranial Signal Processors - Gen I', 'CRTX42-AA Gene Modification'
+    'Cranial Signal Processors - Gen I', 'CRTX42-AA Gene Modification', 'The Black Hand',
+
 ]
 
 export const repList = [
-    15000, 50000
+    10000, 45000, 100000
 ];
 
 export const serverList = [
     //factions
     "CSEC", "avmnite-02h", "I.I.I.I", "run4theh111z", "w0r1d_d43m0n",
+    //normals
     "n00dles", "foodnstuff", "sigma-cosmetics", "joesguns", "nectar-net", "hong-fang-tea",
     "harakiri-sushi", "neo-net", "zer0", "max-hardware", "iron-gym",
     "phantasy", "silver-helix", "omega-net", "crush-fitness", "johnson-ortho",
