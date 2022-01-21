@@ -38,8 +38,8 @@ export async function main(_ns) {
                 ns.tprint(`ERROR 💻 돈이 적음! 돈 생길때까지 루프 검사 할꺼임`);
                 while (pickedRam[0] < jServerRam) {
                     pickedRam = selectServerRam(ns);
-                    await ns.sleep(10000);
-                    ns.tprint(`WARN 💻 돈 기둘리는 중...${pickedRam[0]} GB`);
+                    await ns.sleep(20000);
+                    ns.tprint(`WARN 💻 ${jServerRam} GB 될 때까지 돈 기둘리는 중... 현재 ${pickedRam[0]} GB `);
                 }
                 ns.tprint(`INFO 💻 이제 돈 생긴듯? ${pickedRam[0]} GB`);
             }
