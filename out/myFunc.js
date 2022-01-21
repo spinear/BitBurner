@@ -36,10 +36,10 @@ export function calcThreads(_ns, host, filename) {
 
     // 이건 '내 컴'의 레시오임! 'home' 빼먹으면 망함!
     // 싱귤레러티 API가 실행 된 채로 쓰레드 계산이 들어가서
-    // buy-server + deleteServer 공간만 있으면 됨. 7.2
+    // buy-server + deleteServer 공간만 있으면 됨.
     let ratio =
         host === 'home' && maxRam <= 32 ? 0.8
-            : host === 'home' && maxRam <= 512 ? 0.9
+            : host === 'home' && maxRam <= 512 ? 0.875
                 : host === 'home' && maxRam >= 1024 ? 0.69 // 이때부턴 share()를 쓰기 위해 더 비움
                     : 1;
 
