@@ -23,6 +23,10 @@ export const augList = [
     'Cranial Signal Processors - Gen I', 'CRTX42-AA Gene Modification'
 ]
 
+export const repList = [
+    15000, 50000
+];
+
 export const serverList = [
     //factions
     "CSEC", "avmnite-02h", "I.I.I.I", "run4theh111z", "w0r1d_d43m0n",

@@ -13,7 +13,6 @@ export async function main(_ns) {
 
     // 어느 램이든 서버를 살 수 있을 때
     if (pickedRam[1]) {
-
         // 서버가 이미 존재하는지 검사 후 존재하는 서버의 램을 get
         // 서버가 없으면 jserverRam = 0
         let doIhaveServers = false;
@@ -23,6 +22,8 @@ export async function main(_ns) {
         for (let i of j) {
             if (i === 's-0') {
                 doIhaveServers = true;
+                ns.clearPort(5);
+                await ns.writePort(5, 'true');
                 jServerRam = ns.getServerMaxRam(i);
                 break;
             }

@@ -8,22 +8,24 @@ export async function main(_ns) {
     let fl = factionList;
     let fs = factionServers;
 
-    // 포루프에서 백도어를 깔고 어레이를 slice하는데 다 지우지 못했다면 무한 루프를 돈다
-    while (fs.length > 0) {
-        ns.print(fs);
-        await ns.sleep(60000);
-        for (let i of fs) {
-            if (ns.hasRootAccess(i)) {
-                await connectNbackdoor(ns, i);
-                await ns.sleep(30000);
-                fs = fs.slice(1);
-                for (let j of fl) {
-                    ns.joinFaction(j);
-                }
+    //if (ns.getServerMaxRam('home') < 64) return;
+
+    // // 포루프에서 백도어를 깔고 어레이를 slice하는데 다 지우지 못했다면 무한 루프를 돈다
+    // while (fs.length > 0) {
+    //     ns.print(fs);
+    //     await ns.sleep(60000);
+    for (let i of fs) {
+        if (ns.hasRootAccess(i)) {
+            await connectNbackdoor(ns, i);
+            await ns.sleep(50);
+            //fs = fs.slice(1);
+            for (let j of fl) {
+                ns.joinFaction(j);
             }
         }
     }
-    ns.tprint(`INFO 🚪 빽도어 & 팩션 가입 끝... 아님 어쩔 수 엄꽁... 🚪`)
+    // }
+    //ns.tprint(`INFO 🚪 빽도어 & 팩션 가입 끝... 아님 어쩔 수 엄꽁... 🚪`)
 }
 
 // Stole from https://github.com/jaguilar/bitburner_scripts/blob/master/augment.js
