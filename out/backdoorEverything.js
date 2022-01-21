@@ -41,7 +41,6 @@ function dfsToServer(ns, target) {
 }
 
 async function connectNbackdoor(_ns, server) {
-    ns = _ns;
     let path = dfsToServer(ns, server);
 
     if (!path) {

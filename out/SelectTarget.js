@@ -1,11 +1,8 @@
 import { advHackingTarget } from "./settings.js";
 
-/** @type import('.').NS */
-let ns = null;
+/** @param {import(".").NS } ns */
 
-export async function main(_ns) {
-    ns = _ns;
-
+export async function main(ns) {
     let myLvl = ns.getHackingLevel();
     let tmpTarget = '';
     let tmpTarget2 = '';

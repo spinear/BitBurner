@@ -3,11 +3,11 @@ import { augList, factionList, repList } from './settings';
 /** @type import('.').NS */
 let ns = null;
 
-// 특정 오그먼트를 구입하면 그 팩션을 더 이상 볼일이 없다!는 걸 전제로 함!
+// 특정 오그먼트를 구입하면 그 팩션은 더 이상 볼일이 없다!는 걸 전제로 함!
 export async function main(_ns) {
     ns = _ns;
 
-    let pickedFaction = doIHaveAugs(ns);
+    let pickedFaction = selectFaction(ns);
     if (pickedFaction === '') {
         ns.tprint(`거시기 할 팩션이 없음`);
         return;
@@ -16,14 +16,15 @@ export async function main(_ns) {
     }
 }
 
-function doIHaveAugs(_ns) {
+function selectFaction(_ns) {
     let ownedAugs = ns.getOwnedAugmentations(true);
     ns.tprint('INFO ' + ownedAugs);
     let pickedFaction = '';
     ns.getFactionRep
 
-    // 정해놓은 augList(특정오그)랑 방금 get한 myAugs랑 비교 
-    // && repList(특정오그 가격)랑 방금 get한 FactionRep이랑 또 비교
+    // 정해놓은 augList(특정오그)랑 방금 get한 ownedAugs랑 비교 
+    // 정해놓은 repList(특정오그 가격)랑 방금 get한 FactionRep이랑 또 비교
+    // 정해놓은 어레이는 factionList랑 인덱스가 일치함
     // 특정 오그를 가지고 있거나 그걸 살 rep을 가지고 있으면 다음 팩션으로 넘김
     for (let i = 0; i < augList.length; i++) {
         for (let ownedAug of ownedAugs) {

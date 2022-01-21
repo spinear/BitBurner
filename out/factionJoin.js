@@ -8,12 +8,8 @@ export async function main(_ns) {
     let fl = factionList;
     let fs = factionServers;
 
-    //if (ns.getServerMaxRam('home') < 64) return;
-
-    // // 포루프에서 백도어를 깔고 어레이를 slice하는데 다 지우지 못했다면 무한 루프를 돈다
-    // while (fs.length > 0) {
-    //     ns.print(fs);
-    //     await ns.sleep(60000);
+    // factionList에만 백도어를 깔고 가능하면 팩션에 조인함
+    // 백도어를 이미 깔았는지 팩션에 가입되어있는진 알 수 없으므로 루프마다 실행함
     for (let i of fs) {
         if (ns.hasRootAccess(i)) {
             await connectNbackdoor(ns, i);
@@ -24,20 +20,16 @@ export async function main(_ns) {
             }
         }
     }
-    // }
-    //ns.tprint(`INFO 🚪 빽도어 & 팩션 가입 끝... 아님 어쩔 수 엄꽁... 🚪`)
 }
 
 // Stole from https://github.com/jaguilar/bitburner_scripts/blob/master/augment.js
-function dfsToServer(ns, target) {
+function dfsToServer(_ns, target) {
     function dfsToServerHelper(current, stack) {
         let parent = stack.length > 0 ? stack[stack.length - 1] : null;
         stack.push(current);
-
         if (current == target) {
             return stack;
         }
-
         let neighbors = ns.scan(current);
         for (let n of neighbors) {
             // Don't add the parent back onto the stack.
@@ -54,9 +46,7 @@ function dfsToServer(ns, target) {
 }
 
 async function connectNbackdoor(_ns, server) {
-    ns = _ns;
     let path = dfsToServer(ns, server);
-
     if (!path) {
         throw new Error("no path to " + server);
     }
