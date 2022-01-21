@@ -64,6 +64,7 @@ export async function main(_ns) {
 }
 
 async function installServer(_ns, pickedRam) {
+    ns = _ns;
     ns.exec('deleteServers.js', 'home');
     await ns.sleep(500);
 
@@ -88,6 +89,7 @@ async function installServer(_ns, pickedRam) {
 }
 
 export function selectServerRam(_ns) {
+    ns = _ns;
     let ram = 8;
     let pickedRam = [ram, false];
 

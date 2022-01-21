@@ -5,7 +5,6 @@ let ns = null;
 
 export function killHackScripts(_ns, target) {
     ns = _ns;
-
     if (target != 'home') {
         ns.killall(target);
     }
@@ -18,18 +17,21 @@ export function killHackScripts(_ns, target) {
 }
 
 export function runLoopHack(_ns, loopHackFileName, host, threadCalc, target, instanceNum) {
+    ns = _ns;
     ns.exec(loopHackFileName.vWeaken, host, threadCalc.vWeaken, target, instanceNum);
     ns.exec(loopHackFileName.vGrow, host, threadCalc.vGrow, target, instanceNum);
     ns.exec(loopHackFileName.vHack, host, threadCalc.vHack, target, instanceNum);
 }
 
 export function letsShare(_ns, useableShare) {
+    ns = _ns;
     ns.exec('share.js', 'home', useableShare);
     //ns.tprint('INFO ' + ns.getSharePower());
 }
 
 //쓰레드 계산 
 export function calcThreads(_ns, host, filename) {
+    ns = _ns;
     let maxRam = ns.getServerMaxRam(host)
 
     // 싱귤레러티 API를 위해 내 컴 램에 따라 비율을 다르게 줌 (지금 최소 19GB 남겨야 함)

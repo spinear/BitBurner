@@ -14,7 +14,7 @@ export async function main(_ns) {
 		ns.exec('nukeServers.js', 'home');
 		await ns.sleep(500);
 		ns.exec('factionJoin.js', 'home');
-		await ns.sleep(500);
+		await ns.sleep(1000);
 		ns.exec('SelectTarget.js', 'home');
 		await ns.sleep(500);
 		ns.exec('doHomeHack.js', 'home');

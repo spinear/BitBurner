@@ -24,6 +24,7 @@ export async function main(_ns) {
 
 // Stole from https://github.com/jaguilar/bitburner_scripts/blob/master/augment.js
 function dfsToServer(_ns, target) {
+    ns = _ns;
     function dfsToServerHelper(current, stack) {
         let parent = stack.length > 0 ? stack[stack.length - 1] : null;
         stack.push(current);
@@ -46,6 +47,7 @@ function dfsToServer(_ns, target) {
 }
 
 async function connectNbackdoor(_ns, server) {
+    ns = _ns;
     let path = dfsToServer(ns, server);
     if (!path) {
         throw new Error("no path to " + server);

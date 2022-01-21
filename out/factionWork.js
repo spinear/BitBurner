@@ -6,7 +6,6 @@ let ns = null;
 // 특정 오그먼트를 구입하면 그 팩션은 더 이상 볼일이 없다!는 걸 전제로 함!
 export async function main(_ns) {
     ns = _ns;
-
     let pickedFaction = selectFaction(ns);
     if (pickedFaction === '') {
         ns.tprint(`거시기 할 팩션이 없음`);
@@ -17,6 +16,7 @@ export async function main(_ns) {
 }
 
 function selectFaction(_ns) {
+    ns = _ns;
     let ownedAugs = ns.getOwnedAugmentations(true);
     ns.tprint('INFO ' + ownedAugs);
     let pickedFaction = '';
