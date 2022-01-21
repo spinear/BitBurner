@@ -1,5 +1,34 @@
 /** @param {NS} ns **/
 
+export const factionServers = [
+    "CSEC", "avmnite-02h", "I.I.I.I", "run4theh111z"
+];
+
+// ----------------------------------------------------------------
+// 이 어레이는 인덱스끼리 관계가 서로 일치 해야함!
+export const factionList = [
+    "CyberSec",
+    "NiteSec",
+    "Chongqing",
+    "The Black Hand",
+    "BitRunners",
+    "Daedalus"
+];
+
+export const augList = [
+    'Cranial Signal Processors - Gen I',
+    'CRTX42-AA Gene Modification',
+    'Neuregen Gene Modification',
+    'The Black Hand',
+]
+
+export const repCost = [
+    10000,
+    45000,
+    37500,
+    100000
+];
+// ----------------------------------------------------------------
 export const loopHackFileName = {
     vWeaken: "weaken.js",
     vGrow: "grow.js",
@@ -11,22 +40,6 @@ export const advHackingTarget = [
     "the-hub", "catalyst", "rho-construction", "global-pharm", "b-and-a", "megacorp"
 ];
 
-export const factionServers = [
-    "CSEC", "avmnite-02h", "I.I.I.I", "run4theh111z"
-];
-
-export const factionList = [
-    "CyberSec", "NiteSec", "The Black Hand", "BitRunners", "Daedalus"
-];
-
-export const augList = [
-    'Cranial Signal Processors - Gen I', 'CRTX42-AA Gene Modification', 'The Black Hand',
-
-]
-
-export const repList = [
-    10000, 45000, 100000
-];
 
 export const serverList = [
     //factions

@@ -14,11 +14,10 @@ export async function main(_ns) {
         if (ns.hasRootAccess(i)) {
             await connectNbackdoor(ns, i);
             await ns.sleep(50);
-            //fs = fs.slice(1);
-            for (let j of fl) {
-                ns.joinFaction(j);
-            }
         }
+    }
+    for (let j of fl) {
+        ns.joinFaction(j);
     }
 }
 
