@@ -20,13 +20,15 @@ export const augList = [
     'CRTX42-AA Gene Modification',
     'Neuregen Gene Modification',
     'The Black Hand',
+    'BitRunners Neurolink',
 ]
 
 export const repCost = [
     10000,
     45000,
     37500,
-    100000
+    100000,
+    500000
 ];
 // ----------------------------------------------------------------
 export const loopHackFileName = {
