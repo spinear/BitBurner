@@ -20,7 +20,7 @@ export async function main(_ns) {
 		return;
 	}
 
-	if ((calcedThreads.remainingRam / calcedThreads.maxRam * 100) > 50) {
+	if ((calcedThreads.remainingRam / calcedThreads.maxRam * 100) > 30) {
 		ns.tprint(`집에 램 증가로 스크립트 재실행!`)
 		killHackScripts(ns, 'home');
 		calcedThreads = calcThreads(ns, host, loopHackFileName.vWeaken);
