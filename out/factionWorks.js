@@ -6,11 +6,13 @@ let ns = null;
 // 특정 오그먼트를 사면 그 팩션은 더 볼일이 없다!는 걸 전제로 함!
 export async function main(_ns) {
     ns = _ns;
-    // 1 = 자동 아님 수동
-    let isAutomatic = 1;
-    let pickedFaction = selectFaction(ns);
 
-    if (isAutomatic == 1) {
+    //-------------------
+    let isAutomatic = 1;
+    //-------------------
+
+    let pickedFaction = selectFaction(ns);
+    if (isAutomatic === 1) {
         // 1이면 딴 데서 일해도 매 루프마다 리셋하고 정해진 팩션에서 일 함
         ns.workForFaction(pickedFaction, 'Hacking Contracts', ns.isFocused());
     } else {
@@ -22,14 +24,12 @@ export async function main(_ns) {
     }
 }
 
-
 function selectFaction(_ns) {
     ns = _ns;
     let ownedAugs = ns.getOwnedAugmentations(true);
     //ns.tprint('INFO ' + ownedAugs);
     let pickedFaction;
     let pickedAug;
-
     // 정해놓은 augList(특정오그)랑 방금 get한 ownedAugs랑 비교 
     // 정해놓은 repCost(특정오그 가격)랑 방금 get한 FactionRep이랑 또 비교
     // 특정 오그를 가지고 있거나 그걸 살 rep을 가지고 있으면 다음 factionList
