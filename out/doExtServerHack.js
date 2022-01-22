@@ -32,7 +32,7 @@ export async function main(ns) {
             ++j;
         }
     }
-
+    await ns.sleep(1000);
     // 성공한 서버만 루프 해킹 실행
     for (let host of hackingFileCopiedServers) {
         let threadCalc = calcThreads(ns, host, loopHackFileName.vWeaken);
