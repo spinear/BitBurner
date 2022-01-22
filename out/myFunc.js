@@ -87,7 +87,6 @@ export function calcThreads(_ns, host, filename) {
         vGrow: vGrow,
         isSucceed: isSucceed,
         useableShare: useableShare,
-        canShare: canShare
     }
     return useableThreadsObj;
 }
