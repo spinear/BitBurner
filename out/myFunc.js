@@ -40,10 +40,10 @@ export function calcThreads(_ns, host, filename) {
     let ratio =
         host === 'home' && maxRam <= 32 ? 0.8
             : host === 'home' && maxRam <= 512 ? 0.875
-                : host === 'home' && maxRam >= 1024 ? 0.59 // 이때부턴 share()를 쓰기 위해 더 비움
+                : host === 'home' && maxRam >= 1024 ? 0.5 // 이때부턴 share()를 쓰기 위해 더 비움
                     : 1;
 
-    maxRam = maxRam * ratio;
+    maxRam *= ratio;
     let usedRam = ns.getServerUsedRam(host);
     let jsRam = ns.getScriptRam(filename);
     let useableShare = 0;
@@ -69,16 +69,11 @@ export function calcThreads(_ns, host, filename) {
     let vWeaken = Math.max(Math.floor(useableThreads * weakenRatio), 1);
     let vGrow = Math.max(Math.floor(useableThreads * growRatio), 1);
 
-    // 쉐어 계산
-    let shareRam = ns.getServerMaxRam(host);
-    let shareFileRam = 0;
-    let canShare = false;
-    if (ratio === 0.59) {
-        shareRam = shareRam * 0.3;
-        shareFileRam = ns.getScriptRam('share.js');
+    // 쉐어 계산 
+    if (ratio === 0.5) {
+        let shareRam = ns.getServerMaxRam(host) * 0.4;
+        let shareFileRam = ns.getScriptRam('share.js');
         useableShare = Math.floor(shareRam / shareFileRam);
-        if (useableShare > 50) canShare = true;
-        else canShare = false;
         letsShare(ns, useableShare);
     }
 
