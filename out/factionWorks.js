@@ -7,8 +7,9 @@ let ns = null;
 export async function main(_ns) {
     ns = _ns;
     let pickedFaction = selectFaction(ns);
+
     if (pickedFaction === '') {
-        ns.tprint(`거시기 할 팩션이 없음`);
+        ns.tprint(`ERROR 거시기 할 팩션이 없음`);
         return;
     } else {
         if (!ns.isBusy())
@@ -32,7 +33,7 @@ function selectFaction(_ns) {
     for (let i = 0; i < augList.length; i++) {
         for (let ownedAug of ownedAugs) {
             if (ownedAug === augList[i] || ns.getFactionRep(factionList[i]) > repCost[i]) {
-                ns.tprint(`INFO ${ownedAug}은(는) 이미 먹었거나 레퓨테이션(${repCost[i]})이 충분해 ${factionList[i]} 팩션은 재낌`);
+                ns.tprint(`INFO ${ownedAug}은(는) 이미 먹었거나 REP(${repCost[i]})이 충분해 ${factionList[i]} 팩션은 재낌`);
                 // 일치하는 오그를 찾았다면 다음 어레이 값이 아직 안 먹은걸테니 일단 넣고 다음 augList 루프
                 // 그 후에 if에 안걸리면 여기 넣은게 맞는거!
                 pickedFaction = factionList[i + 1];
@@ -41,6 +42,7 @@ function selectFaction(_ns) {
             }
         }
     }
+    // 어레이 값이 없으면 어케 되는지 아직 모름
     if (pickedFaction === null || pickedFaction === '') {
         pickedFaction = '';
         pickedAug = '';

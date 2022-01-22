@@ -10,6 +10,7 @@ export const factionList = [
     "CyberSec",
     "NiteSec",
     "Chongqing",
+    'Tian Di Hui',
     "The Black Hand",
     "BitRunners",
     "Daedalus"
@@ -19,6 +20,7 @@ export const augList = [
     'Cranial Signal Processors - Gen I',
     'CRTX42-AA Gene Modification',
     'Neuregen Gene Modification',
+    'Neuroreceptor Management Implant',
     'The Black Hand',
     'BitRunners Neurolink',
 ]
@@ -27,6 +29,7 @@ export const repCost = [
     10000,
     45000,
     37500,
+    75000,
     100000,
     500000
 ];
