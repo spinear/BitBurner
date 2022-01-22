@@ -69,7 +69,7 @@ export function calcThreads(_ns, host, filename) {
     let vWeaken = Math.max(Math.floor(useableThreads * weakenRatio), 1);
     let vGrow = Math.max(Math.floor(useableThreads * growRatio), 1);
 
-    // 쉐어 계산 
+    // 쉐어 계산 / 원래 다른데서 호출하려고 오브젝트 맹근거
     if (ratio === 0.5) {
         let shareRam = ns.getServerMaxRam(host) * 0.4;
         let shareFileRam = ns.getScriptRam('share.js');

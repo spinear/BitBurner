@@ -6,34 +6,36 @@ export const factionServers = [
 
 // ----------------------------------------------------------------
 // 이 어레이는 인덱스끼리 관계가 서로 일치 해야함!
-export const factionList = [
-    'CyberSec', // 0
-    'NiteSec', // 1
-    'Chongqing', // 2
-    'Tian Di Hui', // 3
-    'The Black Hand', // 4
-    'BitRunners', // 5
-    'Daedalus' // 6
-];
+export const factionWorksObj = {
+    factionList: [
+        'CyberSec', // 0
+        'NiteSec', // 1
+        'Chongqing', // 2
+        'Tian Di Hui', // 3
+        'The Black Hand', // 4
+        'BitRunners', // 5
+        'Daedalus' // 6
+    ],
+    augList: [
+        'Cranial Signal Processors - Gen I', // 0
+        'CRTX42-AA Gene Modification', // 1
+        'Neuregen Gene Modification', // 2
+        'Neuroreceptor Management Implant', // 3
+        'The Black Hand', // 4
+        'BitRunners Neurolink', // 5
+        '', // 6
+    ],
+    repCost: [
+        10000, // 0
+        45000, // 1
+        37500, // 2
+        75000, // 3
+        100000, // 4
+        500000, // 5
+        1000000 // 6
+    ]
+}
 
-export const augList = [
-    'Cranial Signal Processors - Gen I', // 0
-    'CRTX42-AA Gene Modification', // 1
-    'Neuregen Gene Modification', // 2
-    'Neuroreceptor Management Implant', // 3
-    'The Black Hand', // 4
-    'BitRunners Neurolink', // 5
-]
-
-export const repCost = [
-    10000, // 0
-    45000, // 1
-    37500, // 2
-    75000, // 3
-    100000, // 4
-    500000 // 5
-];
-// ----------------------------------------------------------------
 export const loopHackFileName = {
     vWeaken: 'weaken.js',
     vGrow: 'grow.js',

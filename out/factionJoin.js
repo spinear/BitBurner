@@ -1,10 +1,11 @@
-import { factionList as fl, factionServers as fs } from './settings';
+import { factionWorksObj, factionServers as fs } from './settings';
 
 /** @type import('.').NS */
 let ns = null;
 
 export async function main(_ns) {
     ns = _ns;
+    let fl = factionWorksObj.factionList;
     // factionList에만 백도어를 깔고 팩션 조인은 무조건 시행함
     // 백도어를 이미 깔았는지 팩션에 가입되어있는지 알 수가 없으므로 루프마다 실행함
     for (let i of fs) {
