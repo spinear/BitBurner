@@ -65,7 +65,7 @@ export async function main(_ns) {
 
 async function installServer(_ns, pickedRam) {
     ns = _ns;
-    ns.exec('deleteServers.js', 'home');
+    deleteServers(ns);
     await ns.sleep(500);
 
     let boughtServerHackingTarget = ns.peek(2);
@@ -108,4 +108,16 @@ export function selectServerRam(_ns) {
         ram = ram * 2;
     }
     return pickedRam; // 루프 끝나고 리턴 빼먹으면 클남!!!
+}
+
+export function deleteServers(_ns) {
+    ns = _ns;
+    let pserv = ns.getPurchasedServers();
+
+    for (let i = 0; i < pserv.length; ++i) {
+        let serv = pserv[i];
+        ns.killall(serv);
+        ns.deleteServer(serv);
+    }
+    ns.tprint(`서버 다 지움`);
 }
