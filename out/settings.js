@@ -1,12 +1,12 @@
 /** @param {NS} ns **/
 
-export const factionServers = [
-    'CSEC', 'avmnite-02h', 'I.I.I.I', 'run4theh111z'
-];
-
-// ----------------------------------------------------------------
-// 이 어레이는 인덱스끼리 관계가 서로 일치 해야함!
 export const factionWorksObj = {
+    // 혹은 백도어 깔고 싶은 서버를 넣어도 됨
+    factionServers: [
+        'CSEC', 'avmnite-02h', 'I.I.I.I', 'run4theh111z'
+    ],
+
+    // 이 아래는 인덱스끼리 관계가 서로 일치 해야함!
     factionList: [
         'CyberSec', // 0
         'NiteSec', // 1

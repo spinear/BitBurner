@@ -1,20 +1,19 @@
-import { factionWorksObj, factionServers as fs } from './settings';
+import { factionWorksObj as fwo } from './settings';
 
 /** @type import('.').NS */
 let ns = null;
 
 export async function main(_ns) {
     ns = _ns;
-    let fl = factionWorksObj.factionList;
-    // factionList에만 백도어를 깔고 팩션 조인은 무조건 시행함
+    // factionServer에만 백도어를 깔고 factionList는 무조건 조인함
     // 백도어를 이미 깔았는지 팩션에 가입되어있는지 알 수가 없으므로 루프마다 실행함
-    for (let i of fs) {
+    for (let i of fwo.factionServers) {
         if (ns.hasRootAccess(i)) {
             await connectNbackdoor(ns, i);
             await ns.sleep(50);
         }
     }
-    for (let j of fl) {
+    for (let j of fwo.factionList) {
         ns.joinFaction(j);
     }
 }
