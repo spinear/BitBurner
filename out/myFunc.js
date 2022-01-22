@@ -60,8 +60,8 @@ export function calcThreads(_ns, host, filename) {
 
     // 레벨에 따라 해킹 파일 쓰레드 조절
     [hackRatio, weakenRatio, growRatio] =
-        tmpHackingLvl <= 800 ? [0.2, 0.3, 0.5]
-            : tmpHackingLvl <= 2000 ? [0.125, 0.175, 0.7]
+        tmpHackingLvl <= 750 ? [0.2, 0.3, 0.5]
+            : tmpHackingLvl <= 1500 ? [0.125, 0.175, 0.7]
                 : tmpHackingLvl <= 3000 ? [0.015, 0.185, 0.8]
                     : [0.01, 0.15, 0.84]
 
@@ -77,16 +77,15 @@ export function calcThreads(_ns, host, filename) {
         letsShare(ns, useableShare);
     }
 
-    const useableThreadsObj = {
-        maxRam: maxRam,
-        usedRam: usedRam,
-        remainingRam: remainingRam,
-        useableThreads: useableThreads,
-        vHack: vHack,
-        vWeaken: vWeaken,
-        vGrow: vGrow,
-        isSucceed: isSucceed,
-        useableShare: useableShare,
+    return {
+        maxRam,
+        usedRam,
+        remainingRam,
+        useableThreads,
+        vHack,
+        vWeaken,
+        vGrow,
+        isSucceed,
+        useableShare,
     }
-    return useableThreadsObj;
 }
