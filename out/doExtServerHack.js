@@ -17,7 +17,6 @@ export async function main(ns) {
 
     // 여긴 일반 상점 대상이므로 isSmushed랑 상관없이 매 루프마다 실행해야 함! 
     // 단지 isSmushed === true면 스크립트 교체를 위해 다 지우는 게 추가 됐을 뿐!
-
     // 뉴크 후 파일 업로드
     let j = 0;
     for (let host of serverList) {
@@ -32,7 +31,7 @@ export async function main(ns) {
             ++j;
         }
     }
-    await ns.sleep(1000);
+    await ns.sleep(500);
     // 성공한 서버만 루프 해킹 실행
     for (let host of hackingFileCopiedServers) {
         let threadCalc = calcThreads(ns, host, loopHackFileName.vWeaken);

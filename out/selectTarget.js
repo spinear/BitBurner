@@ -10,7 +10,6 @@ export async function main(ns) {
     let j = 0;
 
     // 이거슨 정해놓은 어레이에서 내 레벨에 맞는 타겟을 고르는 거시다
-
     // 순서대로 정렬된 어레이에서 내 레벨이 높은 타겟만 변수에 넣으며 루프를 돌면 루프 후 저장 된 변수가 내 최대 레벨 타겟
     // 상점은 거기서 -1 값을 씀.
     for (let i of advHackingTarget) {
@@ -52,7 +51,6 @@ export async function main(ns) {
         await ns.writePort(1, ns.peek(2));
         isSmushed = 'true';
     }
-
     ns.clearPort(3);
     await ns.writePort(3, isSmushed);
 }
