@@ -6,7 +6,7 @@ let ns = null;
 
 export async function main(_ns) {
     ns = _ns;
-    let isSmushed = ns.peek(3);
+    const isSmushed = ns.peek(3);
 
     // 가진 돈에 맞는 서버를 선택
     let pickedRam = selectServerRam(ns);
@@ -17,7 +17,7 @@ export async function main(_ns) {
         // 서버가 없으면 jserverRam = 0
         let doIhaveServers = false;
         let jServerRam = 0;
-        let j = ns.scan('home');
+        const j = ns.scan('home');
 
         for (let i of j) {
             if (i === 's-0') {
@@ -112,12 +112,10 @@ export function selectServerRam(_ns) {
 
 export function deleteServers(_ns) {
     ns = _ns;
-    let pserv = ns.getPurchasedServers();
-
-    for (let i = 0; i < pserv.length; ++i) {
-        let serv = pserv[i];
-        ns.killall(serv);
-        ns.deleteServer(serv);
-    }
+    const pserv = ns.getPurchasedServers();
+    pserv.forEach(i => {
+        ns.killall(i);
+        ns.deleteServer(i);
+    });
     ns.tprint(`서버 다 지움`);
 }
