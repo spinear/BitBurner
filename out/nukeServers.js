@@ -34,8 +34,5 @@ export function crackServers(ns, host) {
 }
 
 export async function main(ns) {
-    for (let i = 0; i < serverList.length; ++i) {
-        let host = serverList[i];
-        crackServers(ns, host);
-    }
+    serverList.forEach(host => crackServers(ns, host));
 }

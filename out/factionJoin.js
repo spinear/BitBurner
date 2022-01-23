@@ -8,14 +8,9 @@ export async function main(_ns) {
     // factionServer에만 백도어를 깔고 factionList는 무조건 조인함
     // 백도어를 이미 깔았는지 팩션에 가입되어있는지 알 수가 없으므로 루프마다 실행함
     for (let i of fwo.factionServers) {
-        if (ns.hasRootAccess(i)) {
-            await connectNbackdoor(ns, i);
-            await ns.sleep(50);
-        }
+        if (ns.hasRootAccess(i)) await connectNbackdoor(ns, i);
     }
-    for (let j of fwo.factionList) {
-        ns.joinFaction(j);
-    }
+    fwo.factionList.forEach(j => ns.joinFaction(j));
 }
 
 // Stole from https://github.com/jaguilar/bitburner_scripts/blob/master/augment.js
