@@ -12,15 +12,17 @@ export async function main(_ns) {
 		ns.exec('nukeServers.js', 'home');
 		await ns.sleep(1000);
 		ns.exec('factionJoin.js', 'home');
-		await ns.sleep(2000);
-		ns.exec('factionWorks.js', 'home');
-		await ns.sleep(1000);
+		await ns.sleep(3000);
+
 		ns.exec('selectTarget.js', 'home');
 		await ns.sleep(1000);
 		ns.exec('doHomeHack.js', 'home');
 		await ns.sleep(1000);
 		ns.exec('doExtServerHack.js', 'home');
 		await ns.sleep(1000);
+		ns.exec('factionWorks.js', 'home');
+		await ns.sleep(1000);
+
 		ns.exec('buy-servers.js', 'home');
 
 		ns.print(`INFO 💰타겟이 가진 돈 ${ns.nFormat(ns.getServerMoneyAvailable(ns.peek(1)), '0.0a')} 💰`);
