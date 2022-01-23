@@ -12,7 +12,7 @@ export async function main(_ns) {
 		ns.exec('nukeServers.js', 'home');
 		await ns.sleep(1000);
 		ns.exec('factionJoin.js', 'home');
-		await ns.sleep(1000);
+		await ns.sleep(2000);
 		ns.exec('factionWorks.js', 'home');
 		await ns.sleep(1000);
 		ns.exec('selectTarget.js', 'home');
