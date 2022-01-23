@@ -21,7 +21,7 @@ export const factionWorksObj = {
         'Neuroreceptor Management Implant', // 3
         'The Black Hand', // 4
         'BitRunners Neurolink', // 5
-        '', // 6
+        'The Red Pill', // 6
     ],
     repCost: [
         10000, // 0
