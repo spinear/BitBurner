@@ -32,31 +32,31 @@ export function letsShare(_ns, useableShare) {
 //쓰레드 계산 
 export function calcThreads(_ns, host, filename) {
     ns = _ns;
-    let maxRam = ns.getServerMaxRam(host)
+    const maxRam = ns.getServerMaxRam(host)
 
     // 이건 '내 컴'의 레시오임! 'home' 빼먹으면 망함!
     // 싱귤레러티 API가 실행 된 채로 쓰레드 계산이 들어가서
     // buy-server factionJoin공간만 있으면 됨.
-    let ratio =
+    const ratio =
         host === 'home' && maxRam <= 32 ? 0.8
             : host === 'home' && maxRam <= 512 ? 0.875
                 : host === 'home' && maxRam >= 1024 ? 0.5 // 이때부턴 share()를 쓰기 위해 더 비움
                     : 1;
 
-    maxRam *= ratio;
-    let usedRam = ns.getServerUsedRam(host);
-    let jsRam = ns.getScriptRam(filename);
+    const reducedMaxRam = maxRam * ratio;
+    const usedRam = ns.getServerUsedRam(host);
+    const jsRam = ns.getScriptRam(filename);
     let useableShare = 0;
     let isSucceed = false;
 
-    let useableThreads = Math.floor((maxRam - usedRam) / jsRam);
-    let remainingRam = Math.floor(maxRam - usedRam);
+    const useableThreads = Math.floor((reducedMaxRam - usedRam) / jsRam);
+    const remainingRam = Math.floor(maxRam - usedRam);
 
     if (useableThreads > 3) isSucceed = true;
     else isSucceed = false;
 
     let [hackRatio, weakenRatio, growRatio] = [0, 0, 0];
-    let tmpHackingLvl = ns.getHackingLevel();
+    const tmpHackingLvl = ns.getHackingLevel();
 
     // 레벨에 따라 해킹 파일 쓰레드 조절
     [hackRatio, weakenRatio, growRatio] =
@@ -65,9 +65,9 @@ export function calcThreads(_ns, host, filename) {
                 : tmpHackingLvl <= 3000 ? [0.015, 0.185, 0.8]
                     : [0.01, 0.15, 0.84]
 
-    let vHack = Math.max(Math.floor(useableThreads * hackRatio), 1);
-    let vWeaken = Math.max(Math.floor(useableThreads * weakenRatio), 1);
-    let vGrow = Math.max(Math.floor(useableThreads * growRatio), 1);
+    const vHack = Math.max(Math.floor(useableThreads * hackRatio), 1);
+    const vWeaken = Math.max(Math.floor(useableThreads * weakenRatio), 1);
+    const vGrow = Math.max(Math.floor(useableThreads * growRatio), 1);
 
     // 쉐어 계산 / 원래 다른데서 호출하려고 오브젝트 맹근거
     if (ratio === 0.5) {

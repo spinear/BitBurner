@@ -3,7 +3,7 @@ import { loopHackFileName } from "./settings.js";
 
 /** @type import(".").NS */
 let ns = null;
-let host = 'home';
+const host = 'home';
 
 export async function main(_ns) {
 	ns = _ns;
@@ -16,7 +16,7 @@ export async function main(_ns) {
 		return;
 	}
 
-	if ((calcedThreads.remainingRam / calcedThreads.maxRam * 100) > 30) {
+	if ((calcedThreads.remainingRam / calcedThreads.maxRam * 100) > 40) {
 		ns.tprint(`집에 램 증가로 스크립트 재실행!`)
 		restartHomeScript(ns);
 		return;
