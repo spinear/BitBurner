@@ -39,7 +39,7 @@ export function calcThreads(_ns, host, filename) {
     // buy-server factionJoin공간만 있으면 됨.
     const ratio =
         host === 'home' && maxRam <= 32 ? 0.8
-            : host === 'home' && maxRam <= 512 ? 0.875
+            : host === 'home' && maxRam <= 512 ? 0.9
                 : host === 'home' && maxRam >= 1024 ? 0.5 // 이때부턴 share()를 쓰기 위해 더 비움
                     : 1;
 
