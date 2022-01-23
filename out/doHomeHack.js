@@ -3,10 +3,10 @@ import { loopHackFileName } from "./settings.js";
 
 /** @type import(".").NS */
 let ns = null;
-const host = 'home';
 
 export async function main(_ns) {
 	ns = _ns;
+	const host = 'home';
 	let isSmushed = ns.peek(3);
 	let calcedThreads = calcThreads(ns, host, loopHackFileName.vWeaken);
 
@@ -21,12 +21,12 @@ export async function main(_ns) {
 		restartHomeScript(ns);
 		return;
 	}
-}
 
-function restartHomeScript(_ns) {
-	ns = _ns;
-	let target = ns.peek(2);
-	killHackScripts(ns, 'home');
-	let calcedThreads = calcThreads(ns, host, loopHackFileName.vWeaken);
-	runLoopHack(ns, loopHackFileName, host, calcedThreads, target, 1);
+	function restartHomeScript(_ns) {
+		ns = _ns;
+		let target = ns.peek(2);
+		killHackScripts(ns, 'home');
+		let calcedThreads = calcThreads(ns, host, loopHackFileName.vWeaken);
+		runLoopHack(ns, loopHackFileName, host, calcedThreads, target, 1);
+	}
 }
