@@ -27,8 +27,8 @@ export async function main(_ns) {
 
 function selectFaction(_ns) {
     ns = _ns;
-    let pickedFaction;
-    let pickedAug;
+    let pickedFaction = fwo.factionList[0];
+    let pickedAug = fwo.augList[0];
     // 정해놓은 augList(특정오그)랑 방금 get한 ownedAugs랑 비교 
     // 정해놓은 repCost(특정오그 가격)랑 방금 get한 FactionRep이랑 또 비교
     // 특정 오그를 가지고 있거나 그걸 살 rep을 가지고 있으면 다음 factionList
