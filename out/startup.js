@@ -11,6 +11,8 @@ export async function main(_ns) {
 
 		ns.exec('nukeServers.js', 'home');
 		await ns.sleep(1000);
+		ns.exec('buyAugs.js', 'home'); // 램이 적으면 자동으로 실행 안되니 조건 추가가 필요 엄씀
+		await ns.sleep(1000);
 		ns.exec('factionJoin.js', 'home');
 		await ns.sleep(3000);
 
@@ -21,7 +23,7 @@ export async function main(_ns) {
 		ns.exec('doExtServerHack.js', 'home');
 		await ns.sleep(1000);
 		ns.exec('factionWorks.js', 'home');
-		await ns.sleep(1000);
+		await ns.sleep(2000);
 
 		ns.exec('buyServers.js', 'home');
 
