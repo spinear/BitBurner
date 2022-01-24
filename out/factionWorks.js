@@ -9,17 +9,16 @@ export async function main(_ns) {
     let isAutomatic;
 
     //-------------------
-    if (ns.getHackingLevel() < 300) isAutomatic = false;
-    else isAutomatic = true;
+    if (ns.getHackingLevel() < 300) isAutomatic = false; else isAutomatic = true;
     //-------------------
 
     let pickedFaction = selectFaction(ns);
     if (pickedFaction === undefined) return;
     if (isAutomatic) {
-        // 1이면 딴 데서 일해도 매 루프마다 리셋하고 정해진 팩션에서 일 함
+        // 딴 데서 일해도 매 루프마다 리셋하고 정해진 팩션에서 일 함
         ns.workForFaction(pickedFaction, 'Hacking Contracts', ns.isFocused());
     } else {
-        // any면 딴 데서 일 할 땐 가만 냅두고 일 안 하는 중이면 정해진 팩션에서 일 함
+        // 딴 데서 일 할 땐 가만 냅두고 일 안 하는 중이면 정해진 팩션에서 일 함
         if (!ns.isBusy())
             ns.workForFaction(pickedFaction, 'Hacking Contracts', ns.isFocused());
         else
