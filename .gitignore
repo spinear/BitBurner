@@ -1,3 +1,4 @@
 /.vscode
 /workspace.code-workspace
 /out/index.d.ts
+jsconfig.json
