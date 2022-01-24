@@ -23,7 +23,7 @@ export async function main(_ns) {
 		ns.exec('factionWorks.js', 'home');
 		await ns.sleep(1000);
 
-		ns.exec('buy-servers.js', 'home');
+		ns.exec('buyServers.js', 'home');
 
 		ns.print(`INFO 💰타겟이 가진 돈 ${ns.nFormat(ns.getServerMoneyAvailable(ns.peek(1)), '0.0a')} 💰`);
 		ns.print(`INFO 🎉포트 1: ${ns.peek(1)} 포트 3: ${ns.peek(3)}`);
