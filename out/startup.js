@@ -6,8 +6,12 @@ export async function main(_ns) {
 	// 자체 루프 혹은 원샷 스크립트
 	await init(ns);
 	while (true) {
-		// 서버를 안샀으면 프로그램 구매 안함
-		if (ns.peek(5) === 'true') ns.exec('darkweb.js', 'home');
+
+		// 서버를 사기 전까진 실행 안 할 것들
+		if (ns.peek(5) === 'true') {
+			ns.exec('darkweb.js', 'home');
+			ns.exec('upgradeHome.js', 'home');
+		}
 
 		ns.exec('nukeServers.js', 'home');
 		await ns.sleep(1000);
