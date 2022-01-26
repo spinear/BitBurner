@@ -11,7 +11,7 @@ export async function main(_ns) {
             const repCost = ns.getAugmentationRepReq(aug);
             const moneyCost = ns.getAugmentationPrice(aug);
             if (ns.getFactionRep(flist) > repCost
-                && ns.getServerMoneyAvailable('home') * 0.5 > moneyCost) {
+                && ns.getServerMoneyAvailable('home') * 0.75 > moneyCost) {
                 ns.purchaseAugmentation(flist, aug);
             }
         });

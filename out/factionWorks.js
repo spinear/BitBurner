@@ -24,6 +24,7 @@ export async function main(_ns) {
         else
             ns.tprint(`ERROR 딴데서 일함?`);
     }
+    //if (ns.getFactionRep(pickedFaction) > 500000) ns.exec('installAugmentations.js', 'home');
 }
 
 function selectFaction(_ns) {
