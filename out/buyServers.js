@@ -16,15 +16,17 @@ export async function main(_ns) {
         // 서버가 이미 존재하는지 검사 후 존재하는 서버의 램을 get
         // 서버가 없으면 jserverRam = 0
         let doIhaveServers = false;
-        let jServerRam = 0;
+        let existenceServerRam = 0;
+        let server0 = false;
         const j = ns.scan('home');
-
         for (let i of j) {
-            if (i === 's-0') {
+            if (i === 's-0') server0 = true;
+            // 0번 서버와 24번 서버가 있으면 다 있다고 대충 대충 가정함.
+            if (server0 && i === 's-24') {
                 doIhaveServers = true;
-                jServerRam = ns.getServerMaxRam(i);
+                existenceServerRam = ns.getServerMaxRam(i);
                 ns.clearPort(5);
-                await ns.writePort(5, 'true'); // startup에서 darkweb 실행 조건을 위해 넣은것!
+                await ns.writePort(5, 'true'); // startup에서 실행 조건을 위해 넣은것!
                 break;
             }
         }
@@ -34,12 +36,12 @@ export async function main(_ns) {
             ns.tprint(`WARN 💻 서버 타겟 교체 -> ${ns.peek(2)} / ${pickedRam.ram} GB`);
 
             // 근데 지금 가진 서버보다 작으면 안됨!
-            if (pickedRam.ram < jServerRam) {
+            if (pickedRam.ram < existenceServerRam) {
                 ns.tprint(`ERROR 💻 돈이 적음! 돈 생길때까지 루프 검사 할꺼임`);
-                while (pickedRam.ram < jServerRam) {
+                while (pickedRam.ram < existenceServerRam) {
                     pickedRam = selectServerRam(ns);
                     await ns.sleep(20000);
-                    ns.tprint(`WARN 💻 ${jServerRam} GB 될 때까지 돈 기둘리는 중... 현재 ${pickedRam.ram} GB `);
+                    ns.tprint(`WARN 💻 ${existenceServerRam} GB 될 때까지 돈 기둘리는 중... 현재 ${pickedRam.ram} GB `);
                 }
                 ns.tprint(`INFO 💻 이제 돈 생긴듯? ${pickedRam.ram} GB`);
             }
@@ -48,14 +50,14 @@ export async function main(_ns) {
         }
 
         // 서버가 이미 있는데 낮은 램으로 교체하는 거 방지
-        if (doIhaveServers && pickedRam.ram <= jServerRam) {
-            ns.tprint(`서버 냅둠 / 현재 서버: ${jServerRam} GB / 지금 고른 램: ${pickedRam.ram} GB`);
+        if (doIhaveServers && pickedRam.ram <= existenceServerRam) {
+            ns.tprint(`서버 냅둠 / 현재 서버: ${existenceServerRam} GB / 지금 고른 램: ${pickedRam.ram} GB`);
             return;
         }
 
-        // 이전 램 보다 클 때
-        if (pickedRam.ram > jServerRam) {
-            ns.tprint(`WARN 💻 서버 업글: ${jServerRam} GB -> ${pickedRam.ram} GB`);
+        // 이전 램 보다 클 땐 그냥 삼. 서버가 없으면 existenceServerRam === 0이니깐 어차피 삼
+        if (pickedRam.ram > existenceServerRam) {
+            ns.tprint(`WARN 💻 서버 업글: ${existenceServerRam} GB -> ${pickedRam.ram} GB`);
             await installServer(ns, pickedRam);
             return;
         }

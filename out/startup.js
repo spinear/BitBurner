@@ -6,15 +6,16 @@ export async function main(_ns) {
 	// 자체 루프 혹은 원샷 스크립트
 	await init(ns);
 	while (true) {
+		ns.exec('nukeServers.js', 'home');
+		await ns.sleep(1000);
 
 		// 서버를 사기 전까진 실행 안 할 것들
 		if (ns.peek(5) === 'true') {
 			ns.exec('darkweb.js', 'home');
+			await ns.sleep(1000);
 			ns.exec('upgradeHome.js', 'home');
+			await ns.sleep(1000);
 		}
-
-		ns.exec('nukeServers.js', 'home');
-		await ns.sleep(1000);
 		ns.exec('buyAugs.js', 'home'); // 램이 적으면 자동으로 실행 안되니 조건 추가가 필요 엄씀
 		await ns.sleep(1000);
 		ns.exec('factionJoin.js', 'home');
