@@ -17,12 +17,11 @@ export async function main(_ns) {
         // 서버가 없으면 jserverRam = 0
         let doIhaveServers = false;
         let existenceServerRam = 0;
-        let server0 = false;
+
         const j = ns.scan('home');
-        for (let i of j) {
-            if (i === 's-0') server0 = true;
-            // 0번 서버와 24번 서버가 있으면 다 있다고 대충 대충 가정함.
-            if (server0 && i === 's-24') {
+        for (const i of j) {
+            // 24번 서버가 있으면 다 있다고 대충 대충 가정함.
+            if (i === 's-24') {
                 doIhaveServers = true;
                 existenceServerRam = ns.getServerMaxRam(i);
                 ns.clearPort(5);
