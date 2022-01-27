@@ -1,7 +1,3 @@
-/** @type import('.').NS */
-let ns = null;
-
-export async function main(_ns) {
-    ns = _ns;
+export async function main(ns) {
     ns.installAugmentations('startup.js');
 }

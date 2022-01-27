@@ -1,14 +1,17 @@
-/** @type import('.').NS */
-let ns = null;
-
 let isTraveled = false;
 
-export async function main(_ns) {
-	ns = _ns;
+///** @param {import(".").NS } ns */
+
+export async function main(ns) {
+	//ns = _ns;
 	// 자체 루프 혹은 원샷 스크립트
 	await init(ns);
+	let resetCounter = 0;
 
-	while (true) {
+	while (resetCounter < 61) {
+		resetCounter++;
+		ns.tprint(`ERROR resetCounter = ${resetCounter}`);
+
 		letsTravel(ns);
 
 		ns.exec('nukeServers.js', 'home');
@@ -42,17 +45,18 @@ export async function main(_ns) {
 
 		await ns.sleep(60000);
 	}
+	ns.exec('installAugmentations.js', 'home');
 }
 
-function letsTravel(_ns) {
-	if (!isTraveled && ns.getServerMoneyAvailable('home') > 500000) {
+function letsTravel(ns) {
+	if (!isTraveled && ns.getServerMoneyAvailable('home') > 5000000) {
 		isTraveled = true;
 		ns.exec('travelToCity.js', 'home', 1, 'Chongqing');
 	}
 }
 
-async function init(_ns) {
-	ns = _ns;
+async function init(ns) {
+	//ns = _ns;
 	ns.tail();
 	ns.clearPort(1); // 비교에 쓸 임시 타겟
 	ns.clearPort(2); // 조건 부 타겟
