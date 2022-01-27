@@ -1,11 +1,16 @@
 /** @type import('.').NS */
 let ns = null;
 
+let isTraveled = false;
+
 export async function main(_ns) {
 	ns = _ns;
 	// 자체 루프 혹은 원샷 스크립트
 	await init(ns);
+
 	while (true) {
+		letsTravel(ns);
+
 		ns.exec('nukeServers.js', 'home');
 		await ns.sleep(1000);
 
@@ -36,6 +41,13 @@ export async function main(_ns) {
 		ns.print(`INFO 🎉포트 1: ${ns.peek(1)} 포트 3: ${ns.peek(3)}`);
 
 		await ns.sleep(60000);
+	}
+}
+
+function letsTravel(_ns) {
+	if (!isTraveled && ns.getServerMoneyAvailable('home') > 500000) {
+		isTraveled = true;
+		ns.exec('travelToCity.js', 'home', 1, 'Chongqing');
 	}
 }
 
