@@ -10,7 +10,6 @@ export async function main(ns) {
 
 	while (true) {
 		resetCounter++;
-		ns.tprint(`ERROR resetCounter = ${resetCounter}`);
 
 		letsTravel(ns);
 
@@ -42,12 +41,13 @@ export async function main(ns) {
 
 		ns.print(`INFO 💰타겟이 가진 돈 ${ns.nFormat(ns.getServerMoneyAvailable(ns.peek(1)), '0.0a')} 💰`);
 		ns.print(`INFO 🎉포트 1: ${ns.peek(1)} 포트 3: ${ns.peek(3)}`);
+		ns.print(`ERROR resetCounter = ${resetCounter}`);
 
 		await ns.sleep(60000);
 
 		// 오그가 하나도 없으면 연장
-		if (resetCounter > 50) {
-			resetCounter = 30;
+		if (resetCounter > 80) {
+			resetCounter = 40;
 			ns.exec('installAugmentations.js', 'home');
 		}
 	}
