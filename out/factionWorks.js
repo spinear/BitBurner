@@ -7,24 +7,30 @@ let ns = null;
 export async function main(_ns) {
     ns = _ns;
     let isAutomatic;
-
-    //-------------------
     if (ns.getHackingLevel() < 300) isAutomatic = false; else isAutomatic = true;
-    //-------------------
 
-    let pickedFaction = selectFaction(ns);
-    if (pickedFaction === undefined) return;
+    const pickedFaction = selectFaction(ns);
+    const workType = 'Hacking Contracts';
+
+    if (pickedFaction === undefined)
+        return;
+
+    const unfocusBeforeReset = ns.args[0];
+    if (unfocusBeforeReset) {
+        ns.workForFaction(pickedFaction, workType, false);
+        return;
+    }
+
     if (isAutomatic) {
         // 딴 데서 일해도 매 루프마다 리셋하고 정해진 팩션에서 일 함
-        ns.workForFaction(pickedFaction, 'Hacking Contracts', ns.isFocused());
+        ns.workForFaction(pickedFaction, workType, ns.isFocused());
     } else {
         // 딴 데서 일 할 땐 가만 냅두고 일 안 하는 중이면 정해진 팩션에서 일 함
         if (!ns.isBusy())
-            ns.workForFaction(pickedFaction, 'Hacking Contracts', ns.isFocused());
+            ns.workForFaction(pickedFaction, workType, ns.isFocused());
         else
             ns.tprint(`ERROR 딴데서 일함?`);
     }
-    //if (ns.getFactionRep(pickedFaction) > 500000) ns.exec('installAugmentations.js', 'home');
 }
 
 function selectFaction(_ns) {

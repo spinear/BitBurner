@@ -8,7 +8,7 @@ export async function main(ns) {
 	await init(ns);
 	let resetCounter = 0;
 
-	while (resetCounter < 61) {
+	while (true) {
 		resetCounter++;
 		ns.tprint(`ERROR resetCounter = ${resetCounter}`);
 
@@ -35,7 +35,7 @@ export async function main(ns) {
 		await ns.sleep(1000);
 		ns.exec('doExtServerHack.js', 'home');
 		await ns.sleep(1000);
-		ns.exec('factionWorks.js', 'home');
+		ns.exec('factionWorks.js', 'home', 1, false);
 		await ns.sleep(2000);
 
 		ns.exec('buyServers.js', 'home');
@@ -44,8 +44,15 @@ export async function main(ns) {
 		ns.print(`INFO 🎉포트 1: ${ns.peek(1)} 포트 3: ${ns.peek(3)}`);
 
 		await ns.sleep(60000);
+
+		// 오그가 하나도 없으면 연장
+		if (resetCounter > 50) {
+			resetCounter = 30;
+			ns.exec('factionWorks.js', 'home', 1, true);
+			await ns.sleep(1000);
+			ns.exec('installAugmentations.js', 'home');
+		}
 	}
-	ns.exec('installAugmentations.js', 'home');
 }
 
 function letsTravel(ns) {
