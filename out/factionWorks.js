@@ -15,12 +15,6 @@ export async function main(_ns) {
     if (pickedFaction === undefined)
         return;
 
-    const unfocusBeforeReset = ns.args[0];
-    if (unfocusBeforeReset) {
-        ns.workForFaction(pickedFaction, workType, false);
-        return;
-    }
-
     if (isAutomatic) {
         // 딴 데서 일해도 매 루프마다 리셋하고 정해진 팩션에서 일 함
         ns.workForFaction(pickedFaction, workType, ns.isFocused());

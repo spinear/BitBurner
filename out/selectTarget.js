@@ -14,7 +14,7 @@ export async function main(ns) {
     // 상점은 거기서 -1 값을 씀.
     for (let i of advHackingTarget) {
         // 내 레벨이 타겟레벨의 4배일 때 해킹 타겟으로 잡을꺼
-        const targetLvl = ns.getServerRequiredHackingLevel(i) * 3;
+        const targetLvl = ns.getServerRequiredHackingLevel(i) * 4;
 
         if ((myLvl + 5) > targetLvl) {
             tmpTarget = i;
