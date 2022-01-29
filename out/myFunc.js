@@ -56,13 +56,13 @@ export function calcThreads(_ns, host, filename) {
     else isSucceed = false;
 
     let [hackRatio, weakenRatio, growRatio] = [0, 0, 0];
-    const tmpHackingLvl = ns.getHackingLevel();
+    //const tmpHackingLvl = ns.getHackingLevel();
 
-    // 레벨에 따라 해킹 파일 쓰레드 조절
+    // 레벨에 따라 해킹 파일 쓰레드 조절을 램으로 바꿔봄
     [hackRatio, weakenRatio, growRatio] =
-        tmpHackingLvl <= 750 ? [0.2, 0.3, 0.5]
-            : tmpHackingLvl <= 1500 ? [0.125, 0.175, 0.7]
-                : tmpHackingLvl <= 3000 ? [0.015, 0.185, 0.8]
+        maxRam <= 32 ? [0.2, 0.3, 0.5]
+            : maxRam <= 512 ? [0.125, 0.175, 0.7]
+                : maxRam <= 2048 ? [0.015, 0.185, 0.8]
                     : [0.01, 0.15, 0.84]
 
     const vHack = Math.max(Math.floor(useableThreads * hackRatio), 1);

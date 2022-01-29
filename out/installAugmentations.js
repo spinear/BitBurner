@@ -1,4 +1,5 @@
 export async function main(ns) {
     ns.stopAction();
-    ns.installAugmentations('startup.js');
+    ns.softReset('startup.js');
+    //ns.installAugmentations('startup.js');
 }

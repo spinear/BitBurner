@@ -39,7 +39,7 @@ function selectFaction(_ns) {
         ownedAugs.some(ownedAug => {
             if (ownedAug === targetAug
                 || ns.getFactionRep(fwo.factionList[i]) > fwo.repCost[i]
-                || ns.getFactionFavor(fwo.factionList[i]) > 149) {
+            ) { //|| ns.getFactionFavor(fwo.factionList[i]) > 149
                 //ns.tprint(`INFO ${targetAug}은(는) 이미 먹었거나 REP(${fwo.repCost[i]})이 충분해 ${fwo.factionList[i]} 팩션은 재낌`);
                 // 일치하는 오그를 찾았다면 다음 어레이는 아직 안 먹은 거로 가정하고 일단 +1로 쑤셔 넣음
                 // 근데 그 후에 if에 안걸리면 여기 넣은게 맞는 거!

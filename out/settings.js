@@ -41,7 +41,9 @@ export const loopHackFileName = {
 };
 
 export const advHackingTarget = [
-    'n00dles', 'harakiri-sushi', 'phantasy', 'omega-net',
+    'n00dles', 'harakiri-sushi',
+    //'phantasy',
+    'omega-net',
     'the-hub', 'catalyst', 'rho-construction', 'global-pharm', 'b-and-a', 'megacorp'
 ];
 
