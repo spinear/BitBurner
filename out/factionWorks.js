@@ -17,7 +17,7 @@ export async function main(_ns) {
 
     if (isAutomatic) {
         // 딴 데서 일해도 매 루프마다 리셋하고 정해진 팩션에서 일 함
-        ns.workForFaction(pickedFaction, workType, ns.isFocused());
+        ns.workForFaction(pickedFaction, workType, true);
     } else {
         // 딴 데서 일 할 땐 가만 냅두고 일 안 하는 중이면 정해진 팩션에서 일 함
         if (!ns.isBusy())

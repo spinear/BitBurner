@@ -60,10 +60,9 @@ export function calcThreads(_ns, host, filename) {
 
     // 레벨에 따라 해킹 파일 쓰레드 조절을 램으로 바꿔봄
     [hackRatio, weakenRatio, growRatio] =
-        maxRam <= 32 ? [0.2, 0.3, 0.5]
-            : maxRam <= 512 ? [0.125, 0.175, 0.7]
-                : maxRam <= 2048 ? [0.015, 0.185, 0.8]
-                    : [0.01, 0.15, 0.84]
+        maxRam <= 64 ? [0.2, 0.3, 0.5]
+            : maxRam <= 1024 ? [0.015, 0.185, 0.8]
+                : [0.01, 0.15, 0.84]
 
     const vHack = Math.max(Math.floor(useableThreads * hackRatio), 1);
     const vWeaken = Math.max(Math.floor(useableThreads * weakenRatio), 1);
