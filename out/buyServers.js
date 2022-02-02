@@ -21,7 +21,7 @@ export async function main(_ns) {
         const j = ns.scan('home');
         for (const i of j) {
             // 15번 서버가 있으면 다 있다고 대충 대충 가정함.
-            if (i === 's-15') {
+            if (i === 's-0') {
                 doIhaveServers = true;
                 existingServerRam = ns.getServerMaxRam(i);
                 ns.clearPort(5);
@@ -67,7 +67,7 @@ export async function main(_ns) {
 async function installServer(_ns, pickedRam) {
     ns = _ns;
     deleteServers(ns);
-    await ns.sleep(500);
+    await ns.sleep(250);
 
     let boughtServerHackingTarget = ns.peek(2);
     let i = 0;
@@ -84,7 +84,7 @@ async function installServer(_ns, pickedRam) {
         let threadCalc = calcThreads(ns, host, loopHackFileName.vWeaken);
         runLoopHack(ns, loopHackFileName, host, threadCalc, boughtServerHackingTarget, 1);
         await ns.sleep(1500);
-        ++i;
+        i++;
     }
     ns.tprint(`😎 서버 설치 완료`);
 }
