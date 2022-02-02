@@ -3,8 +3,8 @@ let ns = null;
 
 export async function main(_ns) {
     ns = _ns;
-    if (ns.getServerMoneyAvailable('home') * 0.75 > ns.getUpgradeHomeRamCost())
+    if (ns.getServerMoneyAvailable('home') > ns.getUpgradeHomeRamCost())
         ns.upgradeHomeRam();
-    if (ns.getServerMoneyAvailable('home') * 0.75 > ns.getUpgradeHomeCoresCost())
+    if (ns.getServerMoneyAvailable('home') > ns.getUpgradeHomeCoresCost())
         ns.upgradeHomeCores();
 }

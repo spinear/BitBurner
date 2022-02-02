@@ -45,7 +45,7 @@ export async function main(ns) {
 		await ns.sleep(60000);
 
 		// 오그가 하나도 없으면 연장
-		if (resetCounter > 80) {
+		if (resetCounter > 70) {
 			resetCounter = 40;
 			ns.exec('installAugmentations.js', 'home');
 		}

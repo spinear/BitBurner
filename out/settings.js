@@ -7,8 +7,8 @@ export const factionWorksObj = {
     // 이 아래는 인덱스끼리 관계가 서로 일치 해야함!
     factionList: [
         'CyberSec', // 0
-        'NiteSec', // 1
         'Chongqing', // 2
+        'NiteSec', // 1
         'Tian Di Hui', // 3
         'The Black Hand', // 4
         'BitRunners', // 5
@@ -16,8 +16,8 @@ export const factionWorksObj = {
     ],
     augList: [
         'Cranial Signal Processors - Gen I', // 0
-        'CRTX42-AA Gene Modification', // 1
         'Neuregen Gene Modification', // 2
+        'Cranial Signal Processors - Gen III', // 1
         'Neuroreceptor Management Implant', // 3
         'The Black Hand', // 4
         'BitRunners Neurolink', // 5
@@ -25,12 +25,12 @@ export const factionWorksObj = {
     ],
     repCost: [
         10000, // 0
-        45000, // 1
         37500, // 2
+        52050, // 1
         75000, // 3
         100000, // 4
         500000, // 5
-        1000000 // 6
+        3000000 // 6
     ]
 }
 

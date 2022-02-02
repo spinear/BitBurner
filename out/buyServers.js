@@ -20,8 +20,8 @@ export async function main(_ns) {
 
         const j = ns.scan('home');
         for (const i of j) {
-            // 24번 서버가 있으면 다 있다고 대충 대충 가정함.
-            if (i === 's-24') {
+            // 15번 서버가 있으면 다 있다고 대충 대충 가정함.
+            if (i === 's-15') {
                 doIhaveServers = true;
                 existingServerRam = ns.getServerMaxRam(i);
                 ns.clearPort(5);
